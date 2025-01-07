@@ -1,0 +1,474 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    color: #333;
+    font-family: "Itim", serif;
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 0.8vw;
+    padding-top: 0;
+    width:100vw;
+    height: 100svh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    overflow: hidden;
+}
+
+ .section {
+    border-radius: 0 20px 20px 0;
+    overflow: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    width: 100vw;
+    padding: 20px;
+    border-left: none;
+}
+
+.slide-in {
+    animation-name: slideInFromLeft;
+    animation-duration: 0.7s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-out; 
+}
+
+.overside{
+    background-color: transparent;
+    border-radius: 20px;
+    font-size: 16px;
+    width:100vw;
+    overflow: auto;
+    scrollbar-width: none;
+    overflow-x: hidden;
+}
+
+.click-highlight {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    animation: click-highlight-animation 1s ease-out;
+    pointer-events: none;
+}
+
+.navbar-expand-lg .navigate{
+    flex-direction: column;
+}
+
+.container-nav{
+    display: flex;
+    flex-direction: row;
+    
+    width: 100%;
+}
+
+.navbar-nav .nav-item {
+    border-radius: 30px 0 0 30px;
+    margin: 0px;
+    font-size: 1.4rem;
+    margin-right: 0;
+    width: 8vw;
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.5;
+}
+
+.custom-nav-item.active {
+    font-size: 1.6rem;
+    text-decoration: underline;
+    color: black;
+    padding-left: 10px;
+    opacity: 1;
+    border-right: none;
+}
+
+h1, h2, a, p, code, pre, .navbar-nav .nav-item .nav-link, #team-introduction h2, #products h2, #team-introduction .section-title h3, #products .section-title h3, #team-introduction .section-title p, #products .section-title p {
+    font-family: "Itim", serif;
+}
+
+h1, h2 {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+
+p {
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+.navbar-logo {
+    height: 7vh;
+    margin-top: -15px;
+    display: block;
+}
+
+ .section:nth-child(2), .nav-item.custom-nav-item:nth-child(1) { background-color: #FFF6E3;}
+ .section:nth-child(3), .nav-item.custom-nav-item:nth-child(2) { background-color: #f7dbf2;}
+ .section:nth-child(4), .nav-item.custom-nav-item:nth-child(3) { background-color: #ded7fb;}
+ .section:nth-child(5), .nav-item.custom-nav-item:nth-child(4) { background-color: #e4f5ff;}
+ .section:nth-child(6), .nav-item.custom-nav-item:nth-child(5) { background-color: #d3f4d4;}
+
+ .text-container h2{
+    font-size: 2.5vw;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.text-container {
+    font-size: 1.8vw;
+    text-align: left;
+    font-family: "Itim", serif;
+    line-height: 1.8;
+    color: #333;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.text-container ol {
+    padding-left: 20px;
+    margin: 20px 0;
+    list-style-type: none;
+}
+
+.text-container ol > li {
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 2vh;
+}
+
+.text-container ol > li:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #ff69b4;
+    font-size: 1.2rem;
+}
+
+.text-container ul {
+    padding-left: 40px;
+    list-style-type: "🌟";
+}
+
+.text-container ul li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.text-container span {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 2vw;
+    color: #ff69b4;
+    font-family: 'Comic Sans MS', cursive;
+    animation: bounce 2s infinite alternate;
+}
+
+.text-container hr {
+    border: 0;
+    border-top: 2px dashed #ff69b4;
+    margin: 20px 0;
+}
+
+.logo {
+    text-align: center;
+}
+
+.logo .toupi {
+    font-size: 10vw;
+    font-family: "Itim", serif;
+    color: #f295da;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.logo .bead-bake {
+    font-size: 6vw;
+    font-family: "Itim", serif;
+    color: #6981f3;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: shake 2s infinite alternate;
+}
+
+.card-text {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.card.bg-light .card-text {
+    color: #333;
+    text-shadow: none;
+}
+
+.img-fluid {
+    margin-bottom: auto;
+}
+
+.carousel-inner {
+    border-radius: 5vh;
+}
+
+.marquee-container {
+    background-color: #f8efd9;
+    border-radius: 20px;
+    height: 5vh;
+    align-items: center;
+    width: auto;
+    color: black;
+    border: 1px solid black;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font: bold 10px Arial, sans-serif;
+    letter-spacing: 2.5px;
+}
+
+.navbar {
+    color: #fff;
+    margin: 10px 0 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar-nav {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.second-container{
+    display: flex; 
+    flex-direction: row;
+    overflow: hidden;
+}
+
+.chat-box-comment{
+    background-color: #fcedf8;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.chat-box-comment h2{
+    font-size: 28px;
+    font-weight: bolder;
+    margin-bottom: 20px;
+    color: #333;
+}
+.chat-box-comment p{
+    text-align: center;
+    font-size: 3vh;
+}
+
+.chat-box-input input{
+    width: 80%;
+    height: 5vh;
+    border-radius: 20px;
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+}
+
+.chat-box-input button{
+    width: 15%;
+    height: 5vh;
+    border-radius: 20px;
+    background-color: #f295da;
+    color: white;
+    border: none;
+}
+
+
+@media (min-width: 1000px) {
+    .navbar-brand{
+        margin-top: 8px;
+    }
+    
+    .custom-nav-item.shadow-active {
+        box-shadow: 18px 0 20px rgb(0, 0, 0, 1);
+    }
+}
+
+@media (max-width: 1000px) {
+    
+    .chat-box-comment{
+        margin-top: 50px;
+    }
+    .slide-in {
+        animation-name: slideInFromTop;
+        animation-duration: 0.7s;
+        animation-fill-mode: both;
+        animation-timing-function: ease-out; 
+    }
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        margin-top: -20px;
+    }
+    .section{
+        padding-right: 35px;
+    }
+    body{
+        padding: 8px;
+        padding-top: 0;
+    }
+
+    .logo .toupi {
+        font-size: 8rem;
+    }
+
+    .logo .bead-bake {
+        font-size: 4rem;
+        margin-bottom: 50px;
+    }
+
+    .text-container {
+        font-size: 1.2rem;
+        padding: 15px;
+        margin: 20px auto;
+        line-height: 1.6;
+    }
+
+    .text-container h2 {
+        font-size: 1.2rem;
+    }
+
+    .text-container ol {
+        padding-left: 15px;
+    }
+
+    .text-container ul {
+        padding-left: 25px;
+    }
+
+    .text-container ol > li {
+        padding-left: 0;
+    }
+
+    .text-container ol > li:before {
+        font-size: 0.5rem;
+    }
+
+    .text-container ul li {
+        margin-bottom: 8px;
+    }
+
+    .text-container span {
+        animation: none;
+    }
+
+    .text-container hr {
+        margin: 15px 0;
+    }
+
+    .section {
+        border-radius:  0 0 20px 20px;
+    }
+    .main-container{
+        border-radius:  0 0 20px 20px;
+    }
+
+    body, .hero h1, .hero .btn, footer, #team-introduction h2, #products h2, #team-introduction ul li, #products ul li, #team-introduction .section-title h3, #products .section-title h3, #team-introduction .section-title p, #team-introduction .section-title ul, #products .section-title p, #products .section-title ul {
+        font-family: "Itim", serif;
+    }
+
+    body {
+        font-size: 12px;
+    }
+
+    .cardproduct2 {
+        padding-left: 0;
+    }
+
+    .hero {
+        padding: 50px 0;
+    }
+
+    .navbar-nav {
+        --bs-nav-link-padding-y: 0;
+    }
+
+    .navbar-nav .nav-item {
+        margin: 0 2px;
+        width: 200px;
+        height: 50px;
+        text-align: center;
+        border-bottom: none;
+        border-radius: 20px 20px 0 0;
+    }
+    .navbar-nav .first{
+        margin-left: 0;
+    }
+    .navbar-nav .last{
+        margin-right: 0;
+    }
+
+    .under {
+        margin-top: -20px;
+    }
+
+    .navbar-logo {
+        height: 40px;
+        padding-bottom: 10px;
+    }
+
+    .marquee-container {
+        margin-top: -30px;
+    }
+
+    .navbar-toggler {
+        display: block;
+    }
+
+    .navbar-collapse {
+        display: none;
+    }
+
+    .navbar-nav {
+        flex-direction: unset;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+
+    .section {
+        padding-bottom: 50px;
+    }
+
+    .navbar-nav .nav-item {
+        width: 30%;
+        text-align: center;
+        padding: 10px 0;
+        height: 40px;
+    }
+
+    .navbar-collapse {
+        display: block !important;
+    }
+}
