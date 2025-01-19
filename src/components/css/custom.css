@@ -1,0 +1,145 @@
+.custom-gallery-layout {
+  border-radius: 30px;
+  padding-top: 30px;
+  padding-bottom: 15px;
+  height: auto;
+  width: auto;
+  background-color: #f4fff0;
+}
+
+.custom-gallery-layout .carousel-container {
+  width: 88%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.custom-gallery-layout .carousel-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
+.custom-gallery-layout .carousel {
+  display: grid;
+  grid-template-columns: repeat(3, 3fr);
+  grid-auto-rows: 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.custom-gallery-layout img {
+  border-radius: 30px;
+}
+
+.custom-gallery-layout .carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.custom-gallery-layout .left-arrow {
+  left: -30px;
+  color: black;
+}
+
+.custom-gallery-layout .right-arrow {
+  right: -30px;
+  color: black;
+}
+
+.custom-gallery-layout .carousel-dots {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.custom-gallery-layout .carousel-dots .dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 5px;
+  background-color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.custom-gallery-layout .carousel-dots .dot.active {
+  background-color: #333;
+}
+
+#custom .card-img-top {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+#custom .carousel-inner {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.custom-gallery-layout .item {
+  border-radius: 30px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  width: auto;
+  font-size: 20px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.custom-gallery-layout .item.active {
+  border-radius: 30px;
+  display: flex;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.item.next-enter {
+  top: -100;
+  z-index: 100;
+  animation: slideInNext 0.8s ease forwards;
+}
+
+.item.prev-enter {
+  top: -100;
+  z-index: 100;
+  animation: slideInPrev 0.8s ease forwards;
+}
+
+.item.next-exit {
+  position: relative;
+  animation: slideOutNext 0.8s ease forwards;
+  z-index: 50; /* Hạ z-index để nằm dưới */
+}
+
+.item.prev-exit {
+  position: relative;
+  animation: slideOutPrev 0.8s ease forwards;
+  z-index: 50; /* Hạ z-index để nằm dưới */
+}
+
+@media (max-width: 1000px) {
+  .custom-gallery-layout .carousel {
+    grid-template-columns: repeat(2, 2fr);
+    grid-auto-rows: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+  }
+  #customCard {
+    margin-top: 30px;
+  }
+  .custom-gallery-layout img {
+    border-radius: 20px;
+  }
+  .custom-gallery-layout .left-arrow {
+    left: -25px;
+    color: black;
+  }
+
+  .custom-gallery-layout .right-arrow {
+    right: -25px;
+    color: black;
+  }
+}

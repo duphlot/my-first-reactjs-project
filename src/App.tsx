@@ -1,14 +1,13 @@
-import Alert from "./components/Alert";
-import ListGroup from "./components/ListGroup";
 import Navbar from "./components/Navbar";
-import Message from "./Message"
+import MainBar from './components/mainBar';
 
 function App(){
+  const marqueeText = "      Welcome to the toupi.bnb! ˚✧‧₊ Follow us on Instagram @toupi.bnb for the latest product updates and exclusive news! ˚⟡౨ৎ          ";
+  
   return(
     <>
-      <div>
-        <Navbar />
-      </div>
+      <Navbar text ={marqueeText} />
+      <MainBar />
     </>
   );
 }

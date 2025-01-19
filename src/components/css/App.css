@@ -12,7 +12,8 @@ body {
     font-family: "Itim", serif;
     font-size: 16px;
     line-height: 1.5;
-    padding: 0.8vw;
+    padding-right: 0.8vw;
+    padding-bottom: 0.8vh;
     padding-top: 0;
     width:100vw;
     height: 100svh;
@@ -73,7 +74,6 @@ body {
 .container-nav{
     display: flex;
     flex-direction: row;
-    
     width: 100%;
 }
 
@@ -130,11 +130,11 @@ p {
     display: block;
 }
 
- .section:nth-child(2), .nav-item.custom-nav-item:nth-child(1) { background-color: #FFF6E3;}
- .section:nth-child(3), .nav-item.custom-nav-item:nth-child(2) { background-color: #f7dbf2;}
- .section:nth-child(4), .nav-item.custom-nav-item:nth-child(3) { background-color: #ded7fb;}
- .section:nth-child(5), .nav-item.custom-nav-item:nth-child(4) { background-color: #e4f5ff;}
- .section:nth-child(6), .nav-item.custom-nav-item:nth-child(5) { background-color: #d3f4d4;}
+.nav-item.custom-nav-item:nth-child(1) { background-color: #FFF6E3;}
+.nav-item.custom-nav-item:nth-child(2) { background-color: #f7dbf2;}
+.nav-item.custom-nav-item:nth-child(3) { background-color: #ded7fb;}
+.nav-item.custom-nav-item:nth-child(4) { background-color: #e4f5ff;}
+.nav-item.custom-nav-item:nth-child(5) { background-color: #d3f4d4;}
 
  .text-container h2{
     font-size: 2.5vw;
@@ -238,6 +238,8 @@ p {
 .marquee-container {
     background-color: #f8efd9;
     border-radius: 20px;
+    display: inline-block;
+    min-width: 90vw;
     height: 5vh;
     align-items: center;
     width: auto;
@@ -246,6 +248,31 @@ p {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     font: bold 10px Arial, sans-serif;
     letter-spacing: 2.5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.marquee-text {
+    animation: marquee-scroll 500s linear infinite;
+    white-space: nowrap;
+    position: absolute; 
+}
+
+.marquee-text span {
+    padding-right: 20px;
+}
+
+.marquee-text span:hover{
+    text-decoration: underline;
+}
+
+@keyframes marquee-scroll {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
 }
 
 .navbar {
