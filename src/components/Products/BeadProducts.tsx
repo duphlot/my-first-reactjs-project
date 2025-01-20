@@ -160,7 +160,6 @@ const BeadProducts: React.FC<Props> = ({ style }) => {
                     localStorage.setItem('toupi', JSON.stringify(toupi));
                     console.log(toupi);
                 }
-            });
         });
         
         
@@ -182,10 +181,24 @@ const BeadProducts: React.FC<Props> = ({ style }) => {
                         <button id = "phonestrap" className="btn btn-outline-primary" onClick={() => handleFilter("phonestrap")}>Phonestrap</button>
                     </section>
 
-                    <section id="cart-products">
-                        <button className="btn btn-outline-primary me-2">
-                            🛒 Cart (<span>{cartCount}</span> items)
-                        </button>
+                    <section id="cart-products" style={{ minWidth: 'fit-content' }}>
+                        <div className="cart-btn-container d-flex justify-content-end" style={{ marginBottom: '0 !important' }}>
+                            <button className="btn btn-outline-primary me-2" id="cartBtn">
+                                🛒 cart (<span id="cartCount">0</span> items)
+                            </button>
+                        </div>
+                        <div className="cart-modal" id="cartModal">
+                            <div id="cartContainer"></div>
+                            <a href="#" onClick={() => {  }} className="btn btn-primary">Checkout</a>
+                            <button className="btn btn-secondary" id="closeCartBtn">Close</button>
+                        </div>
+                        <div className="cart-delete-confirm" id="cartDeleteConfirm">
+                            <p className="confirm-text"></p>
+                            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', gap: '30px' }}>
+                                <button className="btn btn-primary" id="deleteItem">Yes</button>
+                                <button className="btn btn-secondary" id="cancelDelete">No</button>
+                            </div>
+                        </div>
                     </section>
                 </div>
 
