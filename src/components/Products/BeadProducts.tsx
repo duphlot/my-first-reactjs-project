@@ -45,6 +45,12 @@ const BeadProducts: React.FC<Props> = ({ style }) => {
             })
         ).then((urls) => urls.filter((url) => url !== null));
 
+        // Fetch colors from color.txt
+        const colorFile = `${imageFolder}/color.txt`;
+        const colorResponse = await fetch(colorFile);
+        const colorText = await colorResponse.text();
+        const colors = colorText.split("\n").map(line => line.trim()).filter(color => color);
+
         return (
             <div key={product.folder} className={`col product-category ${product.filter}`} id={product.folder}>
                 <div className="card h-100">
@@ -82,7 +88,9 @@ const BeadProducts: React.FC<Props> = ({ style }) => {
                         <h5 className="card-title">{product.name}</h5>
                         <p className="card-text">Price: {product.price} VND</p>
                         <select className="form-select mb-3" id="product-color" aria-label="Select color">
-                            {/* Color options from color.txt */}
+                            {colors.map(color => (
+                                <option key={color} value={color}>{color}</option>
+                            ))}
                         </select>
                         <a
                             href="#"
@@ -102,29 +110,31 @@ const BeadProducts: React.FC<Props> = ({ style }) => {
         const productCardsPromises = await Promise.all(
             fetchedProducts.map((product, index) => createProductCard(product, index))
         );
+        handleFilter('bracelets');  
         setProductCards(productCardsPromises);
+    };
+
+    const showfilter = (category: string) => {
+        document.querySelectorAll('.product-category').forEach(product => {
+            if (product.classList.contains(category)) {
+                (product as HTMLElement).style.display = 'block';
+            } else {
+                (product as HTMLElement).style.display = 'none';
+            }
+        });
+        document.querySelectorAll('#product-filters button').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.querySelector(`#product-filters button#${category}`)?.classList.add('active');
     };
 
     useEffect(() => {
         initProductList();
-        const showfilter = (category: string) => {
-            document.querySelectorAll('.product-category').forEach(product => {
-                if (product.classList.contains(category)) {
-                    (product as HTMLElement).style.display = 'block';
-                } else {
-                    (product as HTMLElement).style.display = 'none';
-                }
-                });
-                document.querySelectorAll('#product-filters button').forEach(btn => {
-                btn.classList.remove('active');
-                });
-                document.querySelector(`#product-filters button[onclick="showProductGrid(); showfilter('${category}')"]`)?.classList.add('active');
-        }
-        
-        document.querySelectorAll('#customCard').forEach(card => {
-                card.addEventListener('click', (event) => {
+
+        document.getElementById('product-list')?.addEventListener('click', function (event) {
                 const target = event.target as HTMLElement;
                 if (target && target.classList.contains('addToCartBtn')) {
+                    console.log('Add to cart button clicked');
                     const button = event.target as HTMLElement;
                     const productStyle = button.closest('.product-category')?.classList.contains('cookies');
                     const productCard = button.closest('.card');
@@ -132,38 +142,33 @@ const BeadProducts: React.FC<Props> = ({ style }) => {
                     const productPrice = (productCard?.querySelector('#product-color') as HTMLSelectElement)?.value;
                     const productImage = productCard?.querySelector('img')?.getAttribute('src');
                     console.log(`Adding to cart: ${productName}, Price: ${productPrice}, Style: ${productStyle}, Image: ${productImage}`);
-        
+                
                     let toupi = JSON.parse(localStorage.getItem('toupi') || '[]');
                     const existingProduct = toupi.find((product: { name: string }) => product.name === productName);
                     if (existingProduct) {
-                    existingProduct.quantity += 1;
+                        existingProduct.quantity += 1;
                     } else {
-                    const product = {
-                        name: `${productName} - ${productPrice}`,
-                        price: productPrice,
-                        style: productStyle,
-                        image: productImage,
-                        quantity: 1
-                    };
-                    toupi.push(product);
+                        const product = {
+                            name: `${productName} - ${productPrice}`,
+                            price: productPrice,
+                            style: productStyle,
+                            image: productImage,
+                            quantity: 1
+                        };
+                        toupi.push(product);
                     }
                     localStorage.setItem('toupi', JSON.stringify(toupi));
+                    console.log(toupi);
                 }
-                });
+            });
         });
         
-            // Add other event listeners and handlers here similarly if needed
-        return () => {
-            // Cleanup event listeners if component is unmounted
-            document.querySelectorAll('#customCard').forEach(card => {
-                card.removeEventListener('click', () => {});
-            });
-        };
         
     }, []);
 
     const handleFilter = (filter: string) => {
         console.log(`Filter by: ${filter}`);
+        showfilter(filter);
     };
 
     return (
@@ -171,18 +176,10 @@ const BeadProducts: React.FC<Props> = ({ style }) => {
             <div id="bead" className="products section" style={style}>
                 <div className="products-tool-container">
                     <section id="product-filters">
-                        <button className="btn btn-outline-primary" onClick={() => handleFilter("bracelets")}>
-                            Bracelets
-                        </button>
-                        <button className="btn btn-outline-primary" onClick={() => handleFilter("keyring")}>
-                            Keyring
-                        </button>
-                        <button className="btn btn-outline-primary" onClick={() => handleFilter("necklace")}>
-                            Necklace
-                        </button>
-                        <button className="btn btn-outline-primary" onClick={() => handleFilter("phonestrap")}>
-                            Phonestrap
-                        </button>
+                        <button id = "bracelets" className="btn btn-outline-primary active" onClick={() => handleFilter("bracelets")}>Bracelets</button>
+                        <button id = "keyring" className="btn btn-outline-primary" onClick={() => handleFilter("keyring")}>Keyring</button>
+                        <button id = "necklace" className="btn btn-outline-primary" onClick={() => handleFilter("necklace")}>Necklace</button>
+                        <button id = "phonestrap" className="btn btn-outline-primary" onClick={() => handleFilter("phonestrap")}>Phonestrap</button>
                     </section>
 
                     <section id="cart-products">
