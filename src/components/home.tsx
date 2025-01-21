@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SlickCarousel from "./slickCarousel";
+import { getDatabase, push, ref, set } from "firebase/database";
+import app from "../firebaseConfig";
 
 // Định nghĩa kiểu dữ liệu cho sản phẩm
 interface Product {
@@ -15,7 +17,23 @@ interface HomeProps {
     style?: React.CSSProperties;  // style chỉ truyền là một prop riêng biệt
 }
 
+
 const Home: React.FC<HomeProps> = ({ style }) => {
+    // function write edit order 
+    let [message, setMessage] = useState('');
+    
+    const saveData = async () => {
+        const db = getDatabase(app);
+        const newDoc = push(ref(db, 'góc tâm sự'));
+        set(newDoc, {
+            message: message
+        }).then(() => {
+            alert('Data saved successfully');
+        }).catch((error) => {
+            alert('Failed to save data');
+        })
+    }
+
     const [products, setProducts] = useState<Product[]>([]);
     const productImagePath = "images/newProducts/";
     const productTextFile = "images/newProducts/text.txt";
@@ -64,8 +82,8 @@ const Home: React.FC<HomeProps> = ({ style }) => {
                             đổi thì nhắn zô đây nhe
                         </p>
                         <div className="chat-box-input">
-                            <input type="text" placeholder="Nhập tin nhắn của bạn ở đây..." />
-                            <button>Send</button>
+                            <input value={message} onChange={(e) => setMessage(e.target.value)}  type="text" placeholder="Nhập tin nhắn của bạn ở đây..." />
+                            <button onClick={saveData}>Send</button>
                         </div>
                     </div>
                     <div className="text-container">
