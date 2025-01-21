@@ -24,7 +24,6 @@ const Home: React.FC<HomeProps> = ({ style }) => {
     const fetchProductDataForGrid = async () => {
         const response = await fetch(productTextFile);
         const text = await response.text();
-        console.log(text);
         return text.split("\n").map((line) => {
             const [folder, name, status, price, imageName, position] = line
                 .split("-")
