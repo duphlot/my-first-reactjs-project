@@ -110,8 +110,8 @@ const BeadProducts: React.FC<Props> = ({ style }) => {
         const productCardsPromises = await Promise.all(
             fetchedProducts.map((product, index) => createProductCard(product, index))
         );
-        handleFilter('bracelets');  
         setProductCards(productCardsPromises);
+        handleFilter('bracelets');  
     };
     // Show filter
     const showfilter = (category: string) => {
@@ -136,13 +136,13 @@ const BeadProducts: React.FC<Props> = ({ style }) => {
             if (target && target.classList.contains('addToCartBtn')) {
                 const button = target;
                 const productCard = button.closest('.card');
-                const productName = productCard?.querySelector('.card-title')?.textContent?.trim();
+                let productName = productCard?.querySelector('.card-title')?.textContent?.trim();
                 const productPrice = productCard?.querySelector('.card-text')?.textContent?.replace('Price: ', '').trim();
                 const productImage = productCard?.querySelector('img')?.getAttribute('src');
                 const productColor = (productCard?.querySelector('#product-color') as HTMLSelectElement)?.value;
-
+                productName = productName + ' ' + productColor;
                 let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-                const existingProduct = cart.find((product: { name: string, color: string }) => product.name === productName && product.color === productColor);
+                const existingProduct = cart.find((product: { name: string}) => product.name === productName);
                 if (existingProduct) {
                     existingProduct.quantity += 1;
                 } else {

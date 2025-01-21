@@ -6,6 +6,28 @@ import CustomProducts from "./Products/CustomProducts";
 import Checkout from "./Products/Checkout";
 import Home from './home';
 
+// css
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import 'font-awesome/css/font-awesome.min.css'
+import './css/App.css'
+import './css/animation.css'
+import './css/block.css'
+import './css/carousel.css'
+import './css/checkout.css'
+import './css/custom.css'
+import './css/newProducts.css'
+import './css/product-details.css'
+import './css/products.css'
+import './css/slick.css'
+
+//js
+import 'bootstrap/dist/js/bootstrap.min.js'
+import 'jquery/dist/jquery.min.js'
+import 'slick-carousel/slick/slick.min.js'
+import App from './../App';
+
 const MainBar: React.FC = () => {
     const sections = ["home", "bead", "bake", "custom", "checkout"];
     const sectionColors = ["#FFF6E3", "#f7dbf2", "#ded7fb", "#e4f5ff", "#d3f4d4"];
@@ -50,15 +72,11 @@ const MainBar: React.FC = () => {
                 <Route path="/bake" element={<BakeProducts style={{ backgroundColor: sectionColors[sections.indexOf("bake")] }} />} />
                 <Route path="/custom" element={<CustomProducts style={{ backgroundColor: sectionColors[sections.indexOf("custom")] }} />} />
                 <Route path="/checkout" element={<Checkout style={{ backgroundColor: sectionColors[sections.indexOf("checkout")] }} />} />
+                
             </Routes>
         </div>
     );
 };
 
-const App: React.FC = () => (
-    <Router>
-        <MainBar />
-    </Router>
-);
 
-export default App;
+export default MainBar;

@@ -1,0 +1,168 @@
+/* Admin.css */
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+}
+
+.admin-container {
+    padding: 20px;
+    margin: 0 auto;
+    min-height: fit-content;
+    min-width: 100vw;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-title {
+    text-align: center;
+    color: #333;
+    margin-top: 20px;
+    font-weight: 300;
+    font-size: 2.5em;
+}
+
+.admin-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.admin-button, .search-button {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 30px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.admin-button:hover, .search-button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    margin-right: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: #4CAF50;
+}
+
+.sort-container {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.sort-select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    margin-left: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.sort-select:focus {
+    border-color: #4CAF50;
+}
+
+.order-table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.order-table th, .order-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.order-table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.order-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.no-products {
+    color: #999;
+    font-style: italic;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Admin.css */
+
+.order-row {
+    font-size: 0.9em;
+}
+
+.order-code {
+    color: #333;
+}
+
+.order-igname {
+    color: #007bff;
+}
+
+.order-number {
+    color: #28a745;
+}
+
+.order-address {
+    color: #dc3545;
+}
+
+.order-products .product-name {
+    color: #6c757d;
+}
+
+.order-products .product-quantity {
+    color: #ffc107;
+}
+
+.order-price {
+    color: #17a2b8;
+}
+
+.order-status select {
+    font-size: 0.9em;
+    color: #495057;
+}
+
+.order-date {
+    color: #6f42c1;
+}
