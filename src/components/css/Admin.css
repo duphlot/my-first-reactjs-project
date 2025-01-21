@@ -1,12 +1,5 @@
 /* Admin.css */
 
-body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #f0f2f5;
-    margin: 0;
-    padding: 0;
-    overflow-y: scroll;
-}
 
 .admin-container {
     padding: 20px;

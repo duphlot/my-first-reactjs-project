@@ -111,8 +111,8 @@ const BeadProducts: React.FC<Props> = ({ style }) => {
             fetchedProducts.map((product, index) => createProductCard(product, index))
         );
         setProductCards(productCardsPromises);
-        handleFilter('bracelets');  
     };
+
     // Show filter
     const showfilter = (category: string) => {
         document.querySelectorAll('.product-category').forEach(product => {
@@ -129,6 +129,12 @@ const BeadProducts: React.FC<Props> = ({ style }) => {
     };
 
     useEffect(() => {
+        if (productCards.length > 0) {
+            showfilter('bracelets'); 
+        }
+    }, [productCards]);
+
+    useEffect(() => {
         initProductList();
 
         const handleAddToCart = (event: Event) => {
@@ -136,13 +142,13 @@ const BeadProducts: React.FC<Props> = ({ style }) => {
             if (target && target.classList.contains('addToCartBtn')) {
                 const button = target;
                 const productCard = button.closest('.card');
-                let productName = productCard?.querySelector('.card-title')?.textContent?.trim();
+                const productName = productCard?.querySelector('.card-title')?.textContent?.trim();
                 const productPrice = productCard?.querySelector('.card-text')?.textContent?.replace('Price: ', '').trim();
                 const productImage = productCard?.querySelector('img')?.getAttribute('src');
                 const productColor = (productCard?.querySelector('#product-color') as HTMLSelectElement)?.value;
-                productName = productName + ' ' + productColor;
+
                 let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-                const existingProduct = cart.find((product: { name: string}) => product.name === productName);
+                const existingProduct = cart.find((product: { name: string, color: string }) => product.name === productName && product.color === productColor);
                 if (existingProduct) {
                     existingProduct.quantity += 1;
                 } else {
@@ -164,7 +170,7 @@ const BeadProducts: React.FC<Props> = ({ style }) => {
         const updateCartCount = () => {
             const cart = JSON.parse(localStorage.getItem('cart') || '[]');
             const count = cart.reduce((acc: number, product: { quantity: number }) => acc + product.quantity, 0);
-            document.getElementById('cartCount')!.textContent = count.toString();
+            setCartCount(count);
         };
 
         const updateCartUI = () => {
@@ -209,44 +215,36 @@ const BeadProducts: React.FC<Props> = ({ style }) => {
             const cartContainer = document.getElementById('cartContainer');
             cartModal!.style.display = 'block';
             const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-            document.querySelectorAll('#cartContainer').forEach(cartContainer => {
-                cartContainer.innerHTML = '';
+            cartContainer!.innerHTML = '';
 
-                if (cart.length === 0) {
-                    cartContainer.innerHTML = '<p>Your cart is empty.</p>';
-                } else {
-                    cart.forEach((item: { name: string; price: string; image: string; color: string; quantity: number }, index: number) => {
-                        const cartItem = document.createElement('div');
-                        cartItem.classList.add('cart-product', 'd-flex', 'justify-content-between', 'align-items-center', 'mb-3');
-                        cartItem.innerHTML = `
-                            <div class="flex-grow-1">
-                                <h4 class="cart-product-title mb-1">${item.name}</h4>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center flex-grow-1">
-                                <div class="item-price-quantity d-flex flex-column align-items-center">
-                                    <p class="cart-product-price mb-1" style="font-size: 1rem;">${item.price}</p>
-                                    <div class="d-flex align-items-center">
-                                        <button class="btn btn-secondary btn-sm adjust-quantity decreaseQuantityBtn me-2 d-flex align-items-center justify-content-center" style="font-size:1.2rem; width: 30px; height: 30px;">-</button>
-                                        <span class="quantity me-2" style="font-size: 1.2rem;">${item.quantity}</span>
-                                        <button class="btn btn-secondary btn-sm adjust-quantity increaseQuantityBtn d-flex align-items-center justify-content-center" style="font-size:1.2rem; width: 30px; height: 30px;">+</button>
-                                    </div>
+            if (cart.length === 0) {
+                cartContainer!.innerHTML = '<p>Your cart is empty.</p>';
+            } else {
+                cart.forEach((item: { name: string; price: string; image: string; color: string; quantity: number }) => {
+                    const cartItem = document.createElement('div');
+                    cartItem.classList.add('cart-product', 'd-flex', 'justify-content-between', 'align-items-center', 'mb-3');
+                    cartItem.innerHTML = `
+                        <div class="flex-grow-1">
+                            <h4 class="cart-product-title mb-1">${item.name}</h4>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center flex-grow-1">
+                            <div class="item-price-quantity d-flex flex-column align-items-center">
+                                <p class="cart-product-price mb-1" style="font-size: 1rem;">${item.price}</p>
+                                <div class="d-flex align-items-center">
+                                    <button class="btn btn-secondary btn-sm adjust-quantity decreaseQuantityBtn me-2 d-flex align-items-center justify-content-center" style="font-size:1.2rem; width: 30px; height: 30px;">-</button>
+                                    <span class="quantity me-2" style="font-size: 1.2rem;">${item.quantity}</span>
+                                    <button class="btn btn-secondary btn-sm adjust-quantity increaseQuantityBtn d-flex align-items-center justify-content-center" style="font-size:1.2rem; width: 30px; height: 30px;">+</button>
                                 </div>
                             </div>
-                            <span class="trash-icon ms-3" onclick="removeFromtoupi('${item.name}')">&#128465;</span>
-                        `;
-                        cartContainer.appendChild(cartItem);
-                    });
-                }
-            });
-
-            document.querySelectorAll('.removeFromCartBtn').forEach(button => {
-                button.addEventListener('click', function(this: HTMLElement) {
-                    const productCard = this.closest('.cart-product');
-                    const productName = productCard?.querySelector('.cart-product-title')?.textContent;
-                    if (productName) {
-                        removeFromCart(productName);
-                    }
+                        </div>
+                        <span class="trash-icon ms-3 deleteCartItem">&#128465;</span>
+                    `;
+                    cartContainer!.appendChild(cartItem);
                 });
+            }
+
+            document.querySelectorAll('.deleteCartItem').forEach(button => {
+                button.addEventListener('click', deleteCartItem);
             });
 
             document.querySelectorAll('.increaseQuantityBtn').forEach(button => {
@@ -284,7 +282,6 @@ const BeadProducts: React.FC<Props> = ({ style }) => {
             document.getElementById('cartModal')!.style.display = 'none';
         };
 
-
         const productList = document.getElementById('product-list');
         productList?.addEventListener('click', handleAddToCart);
         document.getElementById('cartBtn')?.addEventListener('click', showCart);
@@ -293,7 +290,6 @@ const BeadProducts: React.FC<Props> = ({ style }) => {
 
         return () => {
             productList?.removeEventListener('click', handleAddToCart);
-            updateCartCount();
             document.getElementById('cartBtn')?.removeEventListener('click', showCart);
             document.getElementById('closeCartBtn')?.removeEventListener('click', closeCart);
         };
@@ -309,10 +305,10 @@ const BeadProducts: React.FC<Props> = ({ style }) => {
             <div id="bead" className="products section" style={style}>
                 <div className="products-tool-container">
                     <section id="product-filters">
-                        <button id = "bracelets" className="btn btn-outline-primary active" onClick={() => handleFilter("bracelets")}>Bracelets</button>
-                        <button id = "keyring" className="btn btn-outline-primary" onClick={() => handleFilter("keyring")}>Keyring</button>
-                        <button id = "necklace" className="btn btn-outline-primary" onClick={() => handleFilter("necklace")}>Necklace</button>
-                        <button id = "phonestrap" className="btn btn-outline-primary" onClick={() => handleFilter("phonestrap")}>Phonestrap</button>
+                        <button id="bracelets" className="btn btn-outline-primary active" onClick={() => handleFilter("bracelets")}>Bracelets</button>
+                        <button id="keyring" className="btn btn-outline-primary" onClick={() => handleFilter("keyring")}>Keyring</button>
+                        <button id="necklace" className="btn btn-outline-primary" onClick={() => handleFilter("necklace")}>Necklace</button>
+                        <button id="phonestrap" className="btn btn-outline-primary" onClick={() => handleFilter("phonestrap")}>Phonestrap</button>
                     </section>
 
                     <section id="cart-products" style={{ minWidth: 'fit-content' }}>

@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar";
 import MainBar from './components/mainBar';
 import Admin from './components/Admin';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from "./components/testLogin";
 
 function App(){
   const marqueeText = "      Welcome to the toupi.bnb! ˚✧‧₊ Follow us on Instagram @toupi.bnb for the latest product updates and exclusive news! ˚⟡౨ৎ          ";
@@ -16,6 +17,7 @@ function App(){
           </>
         } />
         <Route path="/admin/*" element={<Admin />} />
+        <Route path="/login/*" element={<Login />} />
         </Routes>
       </Router>
     </>
