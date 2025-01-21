@@ -2,10 +2,11 @@ import { getDatabase, push, ref, set } from 'firebase/database';
 import React, { useState } from 'react';
 import app from '../../firebaseConfig';
 
+let orderCodeValue ='';
+
 interface Props {
     style: React.CSSProperties;
 }
-
 
 function Checkout({style}: Props) {
     // function that can be used to toggle the visibility of the other address input
@@ -23,28 +24,88 @@ function Checkout({style}: Props) {
     let [subtotal, setSubtotal] = useState(0);
     let [otherAddress, setOtherAddress] = useState('');
 
-    const saveData = async () => {
+    const saveBillingData = async () => {
         const db = getDatabase(app);
+        let temp = createOrderCode();
         const newDoc = push(ref(db, 'order'));
         set(newDoc, {
             igname: igname,
             number: number,
-            address: address ===  'other' ? otherAddress : address, 
-            price: subtotal
-
+            address: address ===  'other' ? otherAddress : address === '' ? 'pick up' : address, 
+            price: subtotal,
+            orderCode: temp
         }).then(() => {
-            alert('Data saved successfully');
-        }).catch((error) => {
-            alert('Failed to save data');
+            orderCodeValue = temp;
+            console.log('Data saved successfully');
+            if (orderCodeValue) {
+                const modal = document.createElement('div');
+                modal.id = 'orderCodeModal';
+                modal.style.display = 'block';
+
+                const closeModalButton = document.createElement('button');
+                closeModalButton.id = 'closeModal';
+                closeModalButton.innerHTML = '&times;';
+                closeModalButton.onclick = () => {
+                    modal.style.display = 'none';
+                };
+
+                const orderCodeText = document.createElement('p');
+                orderCodeText.className = 'ordercode';
+                orderCodeText.innerText = 'Mã đơn hàng của bạn là:';
+
+                const orderCodeValDiv = document.createElement('div');
+                orderCodeValDiv.className = 'orderCodeVal';
+
+                const orderCodeValueElement = document.createElement('h2');
+                orderCodeValueElement.id = 'orderCodeValue';
+                orderCodeValueElement.innerText = orderCodeValue;
+
+                const copyButton = document.createElement('button');
+                copyButton.style.float = 'right';
+                copyButton.onclick = () => copyOrderCode();
+
+                const copyIcon = document.createElement('img');
+                copyIcon.src = 'images/icon/copy.png';
+                copyIcon.alt = 'Copy';
+                copyIcon.style.width = '20px';
+                copyIcon.style.height = '20px';
+
+                copyButton.appendChild(copyIcon);
+                orderCodeValDiv.appendChild(orderCodeValueElement);
+                orderCodeValDiv.appendChild(copyButton);
+
+                const noteText = document.createElement('p');
+                noteText.className = 'note';
+                noteText.innerText = 'Gửi mã này cho sốp qua ig để xác nhận đơn hàng nhé';
+
+                modal.appendChild(closeModalButton);
+                modal.appendChild(orderCodeText);
+                modal.appendChild(orderCodeValDiv);
+                modal.appendChild(noteText);
+
+                document.body.appendChild(modal);
+
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 100000);
+            }
+            console.log(orderCodeValue);
+            }).catch((error) => {
+            console.log('Failed to save data');
         })
     }
 
-
-
-
-
-    // tạm thời để vậy, mốt xóa đi
-    const orderCodeValue = '';
+    // fuction creat code value
+    function createOrderCode() {
+        const now = new Date();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const hours = String(now.getHours()).padStart(2, '0');
+        const randomValue = String(Math.floor(Math.random() * 100)).padStart(2, '0');
+        return `${month}${day}-${hours}${randomValue}`;
+    }
+    
+    // function copy order code
     function copyOrderCode() {
         const orderCode = document.getElementById('orderCodeValue') as HTMLInputElement;
         if (orderCode) {
@@ -101,34 +162,8 @@ function Checkout({style}: Props) {
                     </div>
                     {/* Place Order */}
                     <div className="text-center mt-4">
-                        <button type="submit" className="btn btn-primary w-50" onClick={saveData}>Place Order</button>
+                        <button type="button" className="btn btn-primary w-50" onClick={saveBillingData}>Place Order</button>
                     </div>
-                    {/* Overlay and Modals */}
-                    <div id="overlay"></div>
-                    <div id="loading">
-                    <div className="spinner-border" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </div>
-                    </div>
-                    <div id="success">
-                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="10" stroke="green" strokeWidth="2" />
-                        <path id="checkmark" d="M6 12l4 4 8-8" stroke="green" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    </div>
-                    {orderCodeValue && (
-                        <div id="orderCodeModal" style={{ display: 'block' }}>
-                            <button id="closeModal">&times;</button>
-                            <p className="ordercode">Mã đơn hàng của bạn là:</p>
-                            <div className="orderCodeVal">
-                            <h2 id="orderCodeValue">{orderCodeValue}</h2>
-                            <button style={{ float: 'right' }} onClick={() => copyOrderCode()}>
-                                <img src="images/icon/copy.png" alt="Copy" style={{ width: '20px', height: '20px' }} />
-                            </button>
-                            </div>
-                            <p className="note">Gửi mã này cho sốp qua ig để xác nhận đơn hàng nhé </p>
-                        </div>
-                    )}
                 </form>
             </div>
         </>
