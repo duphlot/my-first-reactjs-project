@@ -5,6 +5,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import "./css/login.css";
 import "font-awesome/css/font-awesome.min.css";
 import { useNavigate  } from "react-router-dom";
+import { get, getDatabase, ref, set } from "firebase/database";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -18,6 +19,23 @@ const firebaseConfig = {
     measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
+interface productsType {
+    name: string;
+    price: string;
+    quantity: string;
+}
+
+interface ToupiItem {
+    igname: string;
+    number: string;
+    address: string;
+    price: string;
+    orderCode?: string;
+    products: productsType[];
+    status?: string;
+    date?: string;
+}
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -25,7 +43,7 @@ const auth = getAuth(app);
 const Login: React.FC = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [isLogin, setIsLogin] = useState(true); // Toggle between Login and Register
+    const [isLogin, setIsLogin] = useState(true); 
 
     useEffect(() => {
         const container = document.getElementById('container');
@@ -56,18 +74,6 @@ const Login: React.FC = () => {
         };
     }, []);
 
-    // Register Function
-    const register = async (e: React.FormEvent) => {
-        e.preventDefault();
-        try {
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            console.log("User Registered:", userCredential.user);
-            alert("Registration Successful!");
-        } catch (error: any) {
-            console.error(error.message);
-            alert(`Registration Error: ${error.message}`);
-        }
-    };
     const navigate = useNavigate();
     // Login Function
     const login = async (e: React.FormEvent) => {
@@ -81,34 +87,80 @@ const Login: React.FC = () => {
             alert(`Login Error: ${error.message}`);
         }
     };
+    let [searchTerm, setSearchTerm] = useState<string>('');
+    const [foundOrders, setFoundOrders] = useState<ToupiItem[] | null>(null);
+
+    const findOrder = async (e: React.FormEvent) => {
+        e.preventDefault();
+        const db = getDatabase(app);
+        const dbRef = ref(db, "order");
+        const snapshot = await get(dbRef);
+        if (snapshot.exists()) {
+            const data: ToupiItem[] = Object.values(snapshot.val());
+            const matchedOrders = data.filter((item) =>
+                Object.values(item).some((value) =>
+                    typeof value === "string" && searchTerm.toLowerCase().includes(value.toLowerCase())
+                )
+            );
+            setFoundOrders(matchedOrders);
+        } else {
+            alert("No orders found");
+            setFoundOrders([]);
+        }
+    };
 
     return (
         <div className="container" id="container">
             <div className={`form-container ${isLogin ? "sign-in" : "sign-up"}`}>
-                <form onSubmit={isLogin ? login : register}>
-                    <h1>{isLogin ? "Sign In" : "Create Account"}</h1>
-                    <div className="social-media">
-                        <a href="#" className="icon"><i className="fa-brands fa-google"></i></a>
-                        <a href="#" className="icon"><i className="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" className="icon"><i className="fa-brands fa-github"></i></a>
-                        {!isLogin && <a href="#" className="icon"><i className="fa-brands fa-linkedin-in"></i></a>}
-                    </div>
-                    <span>{isLogin ? "or use your email password" : "or use your email for registration"}</span>
-                    {!isLogin && <input type="text" placeholder="Name" />}
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+                <form onSubmit={isLogin ? login : findOrder}>
+                    <h1 style={{color:'black'}}>{isLogin ? "Đăng nhập" : "Find your Order"}</h1>
+                    {!isLogin && <input type="text" placeholder="Code Order" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />}
+                    {isLogin && (
+                        <>
+                            <input
+                                type="email"
+                                placeholder="Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </>
+                    )}
                     {isLogin && <a href="#">Forget your password?</a>}
-                    <button type="submit">{isLogin ? "Sign In" : "Sign Up"}</button>
+                    <button type="submit">{isLogin ? "Sign In" : "Find Order"}</button>
+                    <div className="order-results">
+                        {!isLogin && foundOrders && (
+                            <div className="order-results-content">
+                                <h1>{foundOrders.length > 0 ? "" : "No Orders Found"}</h1>
+                                {foundOrders.length > 0 && (
+                                    <div className="order-list">
+                                        {foundOrders.map((item, index) => (
+                                            <div key={index} className="order-item">
+                                                <p><strong>ig:</strong> {item.igname}</p>
+                                                <p><strong>phone:</strong> {item.number}</p>
+                                                <p><strong>address:</strong> {item.address}</p>
+                                                <p><strong>price:</strong> {item.price}</p>
+                                                <p><strong>products:</strong> <br />
+                                                {item.products.map((product, idx) => (
+                                                    <React.Fragment key={idx}>
+                                                        <span className="product-item">
+                                                            {product.name} - {product.quantity}
+                                                        </span>
+                                                        <br />
+                                                    </React.Fragment>
+                                                ))}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
                 </form>
             </div>
             <div className="toggle-container">
@@ -119,12 +171,14 @@ const Login: React.FC = () => {
                         <button className="hidden" id="login" onClick={() => setIsLogin(true)}>Sign In</button>
                     </div>
                     <div className="toggle-panel toggle-right">
-                        <h1>Hello, Friend!</h1>
-                        <p>Enter your personal details and start journey with us</p>
-                        <button className="hidden" id="register" onClick={() => setIsLogin(false)}>Sign Up</button>
+                        <h1>Chào bạn</h1>
+                        <p>Bạn muốn tra thông tin đơn hàng của Bạn hả??</p>
+                        <button className="hidden" id="register" onClick={() => setIsLogin(false)}>FIND ORDER</button>
                     </div>
                 </div>
+                
             </div>
+
         </div>
     );
 };
