@@ -15,14 +15,14 @@ function App(){
     <>
       <Router>
         <Routes>
-        <Route path="/*" element={
+        <Route path="/my-first-reactjs-project/*" element={
           <>
             <Navbar text={marqueeText} />
             <MainBar />
           </>
         } />
-        <Route path="/admin/*" element={<Admin />} />
-        <Route path="/login/*" element={<Login />} />
+        <Route path="/my-first-reactjs-project/admin/*" element={<Admin />} />
+        <Route path="/my-first-reactjs-project/login/*" element={<Login />} />
         </Routes>
       </Router>
     </>
