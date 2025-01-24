@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import SlickCarousel from "./slickCarousel";
 import { getDatabase, push, ref, set } from "firebase/database";
 import app from "../firebaseConfig";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 // Định nghĩa kiểu dữ liệu cho sản phẩm
 interface Product {
@@ -95,9 +97,9 @@ const Home: React.FC<HomeProps> = ({ style }) => {
                                 href="https://www.instagram.com/toupi.bnb/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                style={{ textDecoration: "none", color: "inherit" }}
-                            >
-                                <i className="fa-brands fa-instagram"></i> toupi.bnb
+                                    style={{ textDecoration: "none", color: "inherit" }}
+                                >
+                                    <FontAwesomeIcon icon={faInstagram} /> toupi.bnb
                             </a>
                         </p>
                     </div>

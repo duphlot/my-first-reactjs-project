@@ -21,7 +21,7 @@ async function fetchCustomImages(): Promise<{ imageName: string; caption: string
 async function initCustomGallery() {
     const customContainer = document.getElementById("custom-gallery");
     if (customContainer && customContainer.children.length > 0) return; 
-
+    console.log("trung lapppp");
     const customImages = await fetchCustomImages();
     if (!customImages) return;
 
@@ -40,16 +40,13 @@ async function initCustomGallery() {
         fragment.appendChild(imageWrapper);
         count++;
     });
-    if (document.getElementById("custom-gallery")) {
-        const temp = document.getElementById("custom-gallery");
-        console.log(temp)
-        if (temp) {
-            temp.appendChild(fragment);
-        }
+    const temp = document.getElementById("custom-gallery");
+    if (temp?.children.length === 0) {
+        temp.appendChild(fragment);
     }
 
     const customDots = document.getElementById("carousel-dots");
-    if (customDots && customDots.children.length > 0) return; 
+    if (customDots && customDots.children.length > 0) return;
 
     const dotsFragment = document.createDocumentFragment();
     const totalSlides = Math.ceil(count / 6);
@@ -57,6 +54,7 @@ async function initCustomGallery() {
     for (let i = 0; i < totalSlides; i++) {
         const dot = document.createElement("button");
         dot.classList.add("dot");
+        dot.setAttribute("currentslide", `${i}`);
         dotsFragment.appendChild(dot);
     }
     if (customDots) {
@@ -64,16 +62,85 @@ async function initCustomGallery() {
     }
 }
 
+function CustomGallery() {
+    const carousel = document.querySelector(".carousel") as HTMLElement;
+    const leftArrow = document.querySelector(".left-arrow") as HTMLElement;
+    const rightArrow = document.querySelector(".right-arrow") as HTMLElement;
+    const dots = document.querySelectorAll(".dot");
+
+    let currentIndex = 0;
+    const items = document.querySelectorAll(".item");
+    const itemsPerPage = 6;
+    const totalItems = items.length;
+    const totalSlides = Math.ceil(totalItems / itemsPerPage);
+
+    function updateActiveItems(direction: string | null = null) {
+        console.log(items);
+        items.forEach((item) => {
+            if (item.classList.contains("active")) {
+                item.classList.add(direction === "next" ? "next-exit" : "prev-exit");
+                setTimeout(() => {
+                    item.classList.remove("next-exit", "prev-exit", "active");
+                }, 100);
+            }
+        });
+
+        const start = currentIndex * itemsPerPage;
+        const end = start + itemsPerPage;
+        for (let i = start; i < end && i < totalItems; i++) {
+            setTimeout(() => {
+                items[i].classList.add("active");
+                items[i].classList.add(direction === "next" ? "next-enter" : "prev-enter");
+            }, 100);
+        }
+        for (let i = start; i < end && i < totalItems; i++) {
+            items[i].classList.remove("next-enter", "prev-enter");
+        }
+    }
+
+    function updateCarousel(direction: string | null = null) {
+
+        dots.forEach((dot, index) => {
+            dot.classList.toggle("active", index === currentIndex);
+        });
+
+        updateActiveItems(direction);
+    }
+
+    leftArrow.addEventListener("click", () => {
+        currentIndex = currentIndex > 0 ? currentIndex - 1 : totalSlides - 1;
+        updateCarousel("prev");
+    });
+
+    rightArrow.addEventListener("click", () => {
+        currentIndex = currentIndex < totalSlides - 1 ? currentIndex + 1 : 0;
+        updateCarousel("next");
+    });
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+            const direction = index > currentIndex ? "next" : "prev";
+            currentIndex = index;
+            updateCarousel(direction);
+        });
+    });
+
+    updateCarousel();
+}
 
 function CustomProducts({ style }: Props) {
     const [initialized, setInitialized] = useState(false);
 
     useEffect(() => {
         if (!initialized) {
-            initCustomGallery();
-            setInitialized(true);
+            (async () => {
+                await initCustomGallery(); 
+                CustomGallery();        
+                setInitialized(true);
+            })();
         }
     }, [initialized]);
+    
 
     return (
         <>

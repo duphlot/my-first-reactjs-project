@@ -41,6 +41,7 @@
   position: absolute;
   top: 90px;
   right: 50px;
+  min-width: 300px;
   z-index: 1000;
   background-color: white;
   color: black;

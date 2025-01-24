@@ -113,7 +113,7 @@ img {
 #product-filters .btn,
 #cart-products .btn {
   background-color: #f7efd8;
-  border-color: #ecd8ac;
+  border: none;
   color: black;
   font-size: 14px;
   padding: 5px 12px;
@@ -125,14 +125,12 @@ img {
 #product-filters .btn:hover,
 #cart-products .btn:hover {
   background-color: #d2b98d;
-  border-color: #d2b98d;
   color: black;
 }
 
 #product-filters .btn.active,
 #cart-products .btn.active {
   background-color: #a594f9;
-  border-color: #bfecff;
   color: black;
   text-decoration: underline;
 }
@@ -145,7 +143,6 @@ img {
 #product-filters .btn:not(.active),
 #cart-products .btn:not(.active) {
   color: black;
-  border-color: #ecd8ac;
 }
 #cartContainer {
   display: flex;

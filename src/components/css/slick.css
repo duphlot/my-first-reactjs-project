@@ -1,18 +1,18 @@
 .carousel-center-mode .slick-slide {
-  transform: scaley(0.6);
+  transform: scaley(0.65);
   opacity: 0.3;
   transition: transform 0.5s ease, opacity 0.5s ease;
   overflow: hidden;
 }
-.carousel-center-mode {
-  margin: 0 auto;
-  width: 100%;
-}
+
 .carousel-center-mode .slick-center {
   overflow: hidden;
-  transform: scale(0.95);
+  transform: scale(0.8);
   opacity: 1;
   z-index: 100;
+}
+.carousel-center-mode{
+  margin-top: -5vh;
 }
 
 .carousel-center-mode .slick-slide img {
@@ -24,49 +24,32 @@
 }
 
 .slick-dots {
-  bottom: -70px;
+  bottom: 2vh;
   scale: 1.8;
 }
 .carousel-center-mode button {
   background-color: transparent;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  border: none;
-  color: white;
-  font-size: 20px;
-  margin-top: 20px;
+}
+.slick-prev{
+  left: 0 !important;
 }
 
-.slick-prev::after{
-  content: "";
-  color: gray;
-  font-family: cursive;
-  margin-right: -2vw;
-  font-size: 55px;
-  color: black;
-  opacity: 1;
+.slick-next{
+  right: 0 !important;
 }
 
-.slick-next::after{
-  color: blueviolet;
-  content: "";
-  font-family: cursive;
-  margin-left: -2vw;
-  font-size: 55px;
+.slick-prev, .slick-next {
+  z-index: 1;
   color: black;
+  font-size: 55px;
   opacity: 1;
-}
-.slick-arrow {
-  content: "";
-  display: none !important;
 }
 
 .slick-prev::before {
-  content: "";
   color: gray;
+  content: "❮";
   font-family: cursive;
-  margin-right: -2vw;
+  margin-right: -18vw !important;
   font-size: 55px;
   color: black;
   opacity: 1;
@@ -74,9 +57,10 @@
 
 .slick-next::before {
   color: blueviolet;
-  content: "";
+  content: "❯";
   font-family: cursive;
-  margin-left: -2vw;
+  margin-top: -2vh;
+  margin-left: -18vw;
   font-size: 55px;
   color: black;
   opacity: 1;

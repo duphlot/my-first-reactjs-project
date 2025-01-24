@@ -30,7 +30,7 @@ import App from './../App';
 
 const MainBar: React.FC = () => {
     const sections = ["home", "bead", "bake", "custom", "checkout"];
-    const sectionColors = ["#FFF6E3", "#f7dbf2", "#ded7fb", "#e4f5ff", "#d3f4d4"];
+    const sectionColors = ["#FFF6E3", "#f7dbf2", "#ded7fb", "#e4f5ff", "#eaf9eb"];
     const location = useLocation();
 
     useEffect(() => {
@@ -47,6 +47,17 @@ const MainBar: React.FC = () => {
 
         return () => document.removeEventListener("click", handleClick);
     }, []);
+
+    useEffect(() => {
+        const sectionId = location.pathname.split("/")[1];
+        const activeSection = document.getElementById(sectionId);
+        if (activeSection) {
+            activeSection.style.display = "block";
+            setTimeout(() => {
+                activeSection.classList.add('slide-in');
+            }, 50);
+        }
+    }, [location]);
 
     return (
         <div className="main-container">
@@ -77,6 +88,5 @@ const MainBar: React.FC = () => {
         </div>
     );
 };
-
 
 export default MainBar;

@@ -13,7 +13,7 @@ function Navbar({ text }: NavbarProps) {
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav ms-auto">
                     <a className="navbar-brand">
-                        <img src="/images/logo/logoNavbar.png" alt="Logo" className="navbar-logo" />
+                        <img src="images/logo/logoNavbar.png" alt="Logo" className="navbar-logo" />
                     </a>
                     <a className="nav-link">
                         <div className="marquee-container d-flex justify-content-between">

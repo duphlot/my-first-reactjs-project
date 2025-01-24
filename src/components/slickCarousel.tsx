@@ -13,6 +13,8 @@ const SlickCarousel: React.FC = () => {
         infinite: true,
         focusOnSelect: true, 
         adaptiveHeight: true,
+        prevArrow: <button type="button" className="slick-prev"></button>,
+        nextArrow: <button type="button" className="slick-next"></button>,
         responsive: [
         {
             breakpoint: 768,
