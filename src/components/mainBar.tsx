@@ -56,7 +56,7 @@ const MainBar: React.FC = () => {
                     <li key={section} className={`nav-item custom-nav-item ${location.pathname.includes(section) ? "active shadow-active" : ""}`}>
                         <Link
                             className="nav-link"
-                            to={`/${section}`}
+                            to={`/my-first-reactjs-project/${section}`}
                             style={{ backgroundColor: location.pathname.includes(section) ? sectionColors[index] : "" }}
                         >
                             {section}
