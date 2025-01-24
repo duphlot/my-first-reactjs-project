@@ -9,14 +9,14 @@ interface NavbarProps {
 function Navbar({ text }: NavbarProps) {
     return (
     <>
-    <nav className="navbar navbar-expand-lg" style={{ alignItems: 'center' }}>
-            <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav ms-auto">
-                    <a className="navbar-brand">
+    <nav className="navbar navbar-expand-lg" >
+            <div className="navbar-collapse" id="navbarNav" >
+                <ul className="navbar-nav">
+                    <a className="navbar-brand" >
                         <img src="images/logo/logoNavbar.png" alt="Logo" className="navbar-logo" />
                     </a>
                     <a className="nav-link">
-                        <div className="marquee-container d-flex justify-content-between">
+                        <div className="marquee-container d-flex">
                             <div className="marquee-text">
                             {[...Array(100)].map((_, index) => (
                                 <span key={index}>{text}</span>

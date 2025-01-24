@@ -68,7 +68,6 @@ const MainBar: React.FC = () => {
                         <Link
                             className="nav-link"
                             to={`/${section}`}
-                            style={{ backgroundColor: location.pathname.includes(section) ? sectionColors[index] : "" }}
                         >
                             {section}
                         </Link>

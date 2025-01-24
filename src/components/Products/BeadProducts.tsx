@@ -86,15 +86,14 @@ const BeadProducts: React.FC<Props> = ({ style }) => {
 
                     <div className="card-body text-center">
                         <h5 className="card-title">{product.name}</h5>
-                        <p className="card-text">Price: {product.price} VND</p>
                         <select className="form-select mb-3" id="product-color" aria-label="Select color">
                             {colors.map(color => (
                                 <option key={color} value={color}>{color}</option>
                             ))}
                         </select>
                         <a
-                            href="#"
-                            className={`btn btn-primary ${product.status === "on" ? "addToCartBtn" : "soldOut"}`}
+                            href="#/bead"
+                            className={`card-price btn btn-primary ${product.status === "on" ? "addToCartBtn" : "soldOut"}`}
                         >
                             {product.status === "on" ? `${product.price} VND` : "SOLD OUT!"}
                         </a>
@@ -143,7 +142,7 @@ const BeadProducts: React.FC<Props> = ({ style }) => {
                 const button = target;
                 const productCard = button.closest('.card');
                 const productName = productCard?.querySelector('.card-title')?.textContent?.trim();
-                const productPrice = productCard?.querySelector('.card-text')?.textContent?.replace('Price: ', '').trim();
+                const productPrice = productCard?.querySelector('.card-price')?.textContent?.replace('Price: ', '').trim();
                 const productImage = productCard?.querySelector('img')?.getAttribute('src');
                 const productColor = (productCard?.querySelector('#product-color') as HTMLSelectElement)?.value;
 
@@ -170,6 +169,7 @@ const BeadProducts: React.FC<Props> = ({ style }) => {
         const updateCartCount = () => {
             const cart = JSON.parse(localStorage.getItem('cart') || '[]');
             const count = cart.reduce((acc: number, product: { quantity: number }) => acc + product.quantity, 0);
+            console.log('Cart count:', count);
             setCartCount(count);
         };
 

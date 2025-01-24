@@ -12,25 +12,25 @@ body {
     font-family: "Itim", serif;
     font-size: 16px;
     line-height: 1.5;
-    padding-right: 0.8vw;
-    padding-bottom: 0.8vh;
+    padding: 1vw;
     padding-top: 0;
-    width:100vw;
+    width: 100vw;
     height: 100svh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-}
+    scrollbar-width: none;
+  }
 
 .main-container {
     display: flex;
     flex-direction: row;
-    height: 100vh;
+    height: 88svh;
     overflow: hidden;
 }
 
  .section {
-    border-radius: 0 20px 20px 0;
+    border-radius: 0 5vh 5vh 0;
     overflow: auto;
     overflow-x: hidden;
     scrollbar-width: none;
@@ -78,7 +78,7 @@ body {
 }
 
 .navbar-nav .nav-item {
-    border-radius: 30px 0 0 30px;
+    border-radius: 5vh 0 0 5vh;
     margin: 0px;
     font-size: 1.4rem;
     margin-right: 0;
@@ -125,7 +125,8 @@ p {
 }
 
 .navbar-logo {
-    height: 7vh;
+    width: 6.7vw;
+    height: auto;
     margin-top: -15px;
     display: block;
 }
@@ -236,26 +237,25 @@ p {
 }
 
 .marquee-container {
-    background-color: #f8efd9;
-    border-radius: 20px;
-    display: inline-block;
-    min-width: 90vw;
-    height: 5vh;
-    align-items: center;
-    width: auto;
-    color: black;
-    border: 1px solid black;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    font: bold 10px Arial, sans-serif;
-    letter-spacing: 2.5px;
-    overflow: hidden;
-    position: relative;
+  background-color: #f8efd9;
+  border-radius: 20svb;
+  display: inline-flexbox;
+  width: 88svi;
+  height: 5vh;
+  align-items: center;
+  color: black;
+  border: 0.1vh solid black;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  font: bold 10px Arial, sans-serif;
+  letter-spacing: 2.5px;
+  overflow: hidden;
+  position: relative;
 }
 
 .marquee-text {
-    animation: marquee-scroll 500s linear infinite;
+    animation: marquee-scroll 800s linear infinite;
     white-space: nowrap;
-    position: absolute; 
+    font-size: 1.7vh;
 }
 
 .marquee-text span {
@@ -342,160 +342,172 @@ p {
 }
 
 @media (max-width: 1000px) {
-    
-    .chat-box-comment{
+    .chat-box-comment {
         margin-top: 50px;
     }
     .slide-in {
         animation-name: slideInFromTop;
         animation-duration: 0.7s;
         animation-fill-mode: both;
-        animation-timing-function: ease-out; 
+        animation-timing-function: ease-out;
     }
     .main-container {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        margin-top: -20px;
+      display: flex;
+      flex-direction: column;
+      margin-top: -20px;
     }
-    .section{
-        padding-right: 35px;
-    }
-    body{
-        padding: 8px;
-        padding-top: 0;
-    }
-
-    .logo .toupi {
-        font-size: 8rem;
-    }
-
-    .logo .bead-bake {
-        font-size: 4rem;
-        margin-bottom: 50px;
-    }
-
-    .text-container {
-        font-size: 1.2rem;
-        padding: 15px;
-        margin: 20px auto;
-        line-height: 1.6;
-    }
-
-    .text-container h2 {
-        font-size: 1.2rem;
-    }
-
-    .text-container ol {
-        padding-left: 15px;
-    }
-
-    .text-container ul {
-        padding-left: 25px;
-    }
-
-    .text-container ol > li {
-        padding-left: 0;
-    }
-
-    .text-container ol > li:before {
-        font-size: 0.5rem;
-    }
-
-    .text-container ul li {
-        margin-bottom: 8px;
-    }
-
-    .text-container span {
-        animation: none;
-    }
-
-    .text-container hr {
-        margin: 15px 0;
-    }
-
     .section {
-        border-radius:  0 0 20px 20px;
+      padding-right: 35px;
     }
-    .main-container{
-        border-radius:  0 0 20px 20px;
-    }
-
-    body, .hero h1, .hero .btn, footer, #team-introduction h2, #products h2, #team-introduction ul li, #products ul li, #team-introduction .section-title h3, #products .section-title h3, #team-introduction .section-title p, #team-introduction .section-title ul, #products .section-title p, #products .section-title ul {
-        font-family: "Itim", serif;
-    }
-
     body {
-        font-size: 12px;
+      padding: 8px;
+      padding-top: 0;
     }
-
-    .cardproduct2 {
-        padding-left: 0;
+  
+    .logo .toupi {
+      font-size: 8rem;
     }
-
-    .hero {
-        padding: 50px 0;
+  
+    .logo .bead-bake {
+      font-size: 4rem;
+      margin-bottom: 50px;
     }
-
-    .navbar-nav {
-        --bs-nav-link-padding-y: 0;
+  
+    .text-container {
+      font-size: 1.2rem;
+      padding: 15px;
+      margin: 20px auto;
+      line-height: 1.6;
     }
-
-    .navbar-nav .nav-item {
-        margin: 0 2px;
-        width: 200px;
-        height: 50px;
-        text-align: center;
-        border-bottom: none;
-        border-radius: 20px 20px 0 0;
+  
+    .text-container h2 {
+      font-size: 1.2rem;
     }
-    .navbar-nav .first{
-        margin-left: 0;
+  
+    .text-container ol {
+      padding-left: 15px;
     }
-    .navbar-nav .last{
-        margin-right: 0;
+  
+    .text-container ul {
+      padding-left: 25px;
     }
-
-    .under {
-        margin-top: -20px;
+  
+    .text-container ol > li {
+      padding-left: 0;
     }
-
-    .navbar-logo {
-        height: 40px;
-        padding-bottom: 10px;
+  
+    .text-container ol > li:before {
+      font-size: 0.5rem;
     }
-
-    .marquee-container {
-        margin-top: -30px;
+  
+    .text-container ul li {
+      margin-bottom: 8px;
     }
-
-    .navbar-toggler {
-        display: block;
+  
+    .text-container span {
+      animation: none;
     }
-
-    .navbar-collapse {
-        display: none;
+  
+    .text-container hr {
+      margin: 15px 0;
     }
-
-    .navbar-nav {
-        flex-direction: unset;
-        align-items: center;
-        margin-top: 20px;
-    }
-
-
+  
     .section {
-        padding-bottom: 50px;
+      border-radius: 0 0 20px 20px;
     }
-
+    .main-container {
+      border-radius: 0 0 20px 20px;
+    }
+  
+    body,
+    .hero h1,
+    .hero .btn,
+    footer,
+    #team-introduction h2,
+    #products h2,
+    #team-introduction ul li,
+    #products ul li,
+    #team-introduction .section-title h3,
+    #products .section-title h3,
+    #team-introduction .section-title p,
+    #team-introduction .section-title ul,
+    #products .section-title p,
+    #products .section-title ul {
+      font-family: "Itim", serif;
+    }
+  
+    body {
+      font-size: 12px;
+    }
+  
+    .cardproduct2 {
+      padding-left: 0;
+    }
+  
+    .hero {
+      padding: 50px 0;
+    }
+  
+    .navbar-nav {
+      --bs-nav-link-padding-y: 0;
+    }
+  
     .navbar-nav .nav-item {
-        width: 30%;
-        text-align: center;
-        padding: 10px 0;
-        height: 40px;
+      margin: 0 2px;
+      width: 200px;
+      height: 50px;
+      text-align: center;
+      border-bottom: none;
+      border-radius: 20px 20px 0 0;
     }
-
+    .navbar-nav .first {
+      margin-left: 0;
+    }
+    .navbar-nav .last {
+      margin-right: 0;
+    }
+  
+    .under {
+      margin-top: -20px;
+    }
+  
+    .navbar-logo {
+      padding-bottom: 10px;
+      width: 18vw;
+    }
+  
+    .marquee-container {
+      width: 70vw;
+      margin-top: -30px;
+    }
+  
+    .navbar-toggler {
+      display: block;
+    }
+  
     .navbar-collapse {
-        display: block !important;
+      display: none;
     }
-}
+  
+    .navbar-nav {
+      flex-direction: unset;
+      align-items: center;
+      margin-top: 20px;
+    }
+  
+    .section {
+      padding-bottom: 50px;
+    }
+  
+    .navbar-nav .nav-item {
+      width: 30%;
+      text-align: center;
+      padding: 10px 0;
+      height: 40px;
+    }
+  
+    .navbar-collapse {
+      display: block !important;
+    }
+  }
+  

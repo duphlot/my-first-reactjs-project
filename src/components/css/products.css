@@ -110,6 +110,14 @@ img {
   transform: scale(1.05);
 }
 
+#product-filters{
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
 #product-filters .btn,
 #cart-products .btn {
   background-color: #f7efd8;

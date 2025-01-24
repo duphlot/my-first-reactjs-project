@@ -65,3 +65,39 @@
   color: black;
   opacity: 1;
 }
+
+@media (max-width: 786px) {
+  .carousel-center-mode{
+    margin-top: 0;
+  }
+  .slick-prev::before {
+    color: gray;
+    content: "❮";
+    font-family: cursive;
+    margin-right: -18vw !important;
+    font-size: 55px;
+    color: black;
+    opacity: 1;
+  }
+
+  .slick-next::before {
+    color: blueviolet;
+    content: "❯";
+    font-family: cursive;
+    margin-top: -2vh;
+    margin-left: -18vw;
+    font-size: 55px;
+    color: black;
+    opacity: 1;
+  }
+  .carousel-center-mode .slick-slide {
+    transform: scale(0.65);
+  }
+  .carousel-center-mode .slick-center {
+    transform: scale(1);
+  }
+  .slick-dots {
+    bottom: -7vh;
+    scale: 1.2;
+  }
+}
