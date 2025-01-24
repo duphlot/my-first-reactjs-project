@@ -2,7 +2,7 @@
   "name": "toupibnb-reactjs",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://duphlot.github.io/my-first-reactjs-project",
+  "homepage": "https://duphlot.github.io/my-first-reactjs-project/",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
