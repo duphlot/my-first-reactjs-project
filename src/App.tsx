@@ -1,7 +1,7 @@
 // import Navbar from "./components/Navbar";
 // import MainBar from './components/mainBar';
 // import Admin from './components/Admin';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import { lazy } from "react";
 const Login = lazy(() => import("./components/testLogin"));
 const Navbar = lazy(() => import("./components/Navbar"));
@@ -15,14 +15,14 @@ function App(){
     <>
       <Router>
         <Routes>
-        <Route path="/my-first-reactjs-project/*" element={
+        <Route path="/*" element={
           <>
             <Navbar text={marqueeText} />
             <MainBar />
           </>
         } />
-        <Route path="/my-first-reactjs-project/admin/*" element={<Admin />} />
-        <Route path="/my-first-reactjs-project/login/*" element={<Login />} />
+        <Route path="/admin/*" element={<Admin />} />
+        <Route path="/login/*" element={<Login />} />
         </Routes>
       </Router>
     </>
