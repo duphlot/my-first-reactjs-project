@@ -1,9 +1,10 @@
 #product-details {
   padding: 20px 20px;
   background-color: #fdfdfd;
-  border-radius: 20px;
+  border-radius: 0 20px 20px 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
+  overflow: auto;
+  scrollbar-width: none;
 }
 
 #product-details .carousel-inner {
