@@ -1,12 +1,13 @@
 #product-details {
   padding: 20px 20px;
   background-color: #fdfdfd;
-  border-radius: 0 20px 20px 0;
+  border-radius: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  overflow: auto;
-  scrollbar-width: none;
+  margin-top: 20px;
 }
-
+#product-color{
+  font-size: 1.3svw;
+}
 #product-details .carousel-inner {
   border: 2px solid #ccc;
   background-color: #fff;
@@ -25,7 +26,7 @@
 }
 
 #product-details h5#product-name {
-  font-size: 28px;
+  font-size: 2.4svw;
   font-weight: bold;
   color: #333;
   margin-bottom: 15px;
@@ -33,14 +34,14 @@
 }
 
 #product-details p#product-description {
-  font-size: 16px;
+  font-size:  1.5svw;
   line-height: 1.8;
   color: #666;
   margin-bottom: 20px;
 }
 
 #product-details p {
-  font-size: 18px;
+  font-size: 1.5svw;
   font-weight: 600;
   color: #ff5722;
   margin-bottom: 15px;
@@ -49,15 +50,14 @@
 #product-details .addToCartBtn,
 #product-details .soldOut {
   background-color: #ddd7fc;
-  border: none;
   color: #000000;
   border: 1px solid #333;
   text-align: center;
   display: block;
-  font-size: 16px;
+  font-size: 1.5svw;
   margin: 0px 5px;
   cursor: pointer;
-  border-radius: 20px;
+  border-radius: 2svw;
   transition: background-color 0.3s, transform 0.3s;
 }
 
@@ -81,16 +81,11 @@
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
+  height: 100%;
   margin: auto;
 }
 
 @media (max-width: 768px) {
-  #product-details {
-    padding: 10px 10px;
-    padding-bottom: 0;
-    box-shadow: none;
-  }
 
   #product-details h5#product-name {
     font-size: 24px;

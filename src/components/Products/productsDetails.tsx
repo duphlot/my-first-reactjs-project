@@ -10,11 +10,7 @@ const ProductsDetails: React.FC = () => {
     const productPrice = queryParams.get("productPrice") || "";
     const productName = queryParams.get("productName") || "";
     const productStatus = queryParams.get("productStatus") || "";
-    console.log(sectionId);
-    console.log(productId);
-    console.log(productPrice);
-    console.log(productName);
-    console.log(productStatus);
+
 
 
         const [productDetails, setProductDetails] = useState({
@@ -28,11 +24,6 @@ const ProductsDetails: React.FC = () => {
             colors: [] as string[],
         });
 
-        const HideDetailsSection = () => {
-            document.querySelectorAll('.side-section').forEach((section) => {
-                (section as HTMLElement).style.display = 'none';
-            });
-        }
     
         const showDetailsSection = async (
             sectionId: string,
@@ -41,18 +32,6 @@ const ProductsDetails: React.FC = () => {
             productName: string,
             productStatus: string
         ) => {
-            console.log(sectionId);
-            console.log(productId);
-            
-            document.querySelectorAll('.section').forEach((section) => {
-                (section as HTMLElement).style.display = 'none';
-            });
-    
-            const selectedSection = document.getElementById(sectionId);
-            if (selectedSection) {
-                selectedSection.style.display = 'block';
-            }
-    
             const productFolder = `images/productImg/${productId}`;
     
             const imageUrls = await Promise.all(
@@ -152,7 +131,7 @@ const ProductsDetails: React.FC = () => {
                                 ))}
                             </select>
                             <a
-                                href="#"
+                                href="/my-first-reactjs-project/#/bead/productDetails?sectionId=product-details&productId=product.folder&productPrice=product.price&productName=product.name&productStatus=product.status"
                                 className={`btn btn-primary ${productDetails.productStatus === 'on' ? 'addToCartBtn' : 'soldOut'}`}
                             >
                                 {productDetails.productStatus === 'on' ? 'Bỏ vô giỏ ik 🛒' : 'SOLD OUT!'}

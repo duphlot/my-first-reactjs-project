@@ -28,6 +28,7 @@ import 'jquery/dist/jquery.min.js'
 import 'slick-carousel/slick/slick.min.js'
 import App from './../App';
 import ProductsDetails from "./Products/productsDetails";
+import Bead from "./Products/bead";
 
 const MainBar: React.FC = () => {
     const sections = ["home", "bead", "bake", "custom", "checkout"];
@@ -87,8 +88,10 @@ const MainBar: React.FC = () => {
             {/* Content Sections */}
             <Routes>
                 <Route path="/home" element={<Home style={{ backgroundColor: sectionColors[sections.indexOf("home")] }} />} />
-                <Route path="/bead" element={<BeadProducts style={{ backgroundColor: sectionColors[sections.indexOf("bead")] }} />} />
-                <Route path="/productDetails" element={<ProductsDetails />} />
+                <Route path="/bead/*" element={
+                    // <BeadProducts style={{ backgroundColor: sectionColors[sections.indexOf("bead")] }} />
+                    <Bead style={{ backgroundColor: sectionColors[sections.indexOf("bead")] }} />
+                } />
                 <Route path="/bake" element={<BakeProducts style={{ backgroundColor: sectionColors[sections.indexOf("bake")] }} />} />
                 <Route path="/custom" element={<CustomProducts style={{ backgroundColor: sectionColors[sections.indexOf("custom")] }} />} />
                 <Route path="/checkout" element={<Checkout style={{ backgroundColor: sectionColors[sections.indexOf("checkout")] }} />} />
