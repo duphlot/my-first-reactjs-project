@@ -42,7 +42,7 @@
   top: 90px;
   right: 50px;
   min-width: 300px;
-  z-index: 1000;
+  z-index: 10000;
   background-color: white;
   color: black;
   border: 1px solid #ccc;
@@ -86,6 +86,7 @@
 @media only screen and (max-width: 1000px) {
   .products .cart-modal {
     top: 140px;
+    z-index: 10000;
     right: 30px;
     padding: 10px;
     margin-right: 0;
