@@ -118,6 +118,9 @@ const Home: React.FC<HomeProps> = ({ style }) => {
                                         className="new-product"
                                         onClick={() => handleProductClick(product)}
                                     >
+                                        <a
+                                        href = {`/my-first-reactjs-project/#/bead/productDetails?sectionId=product-details&productId=${product.folder}&productPrice=${product.price}&productName=${product.name}&productStatus=${product.status}`}
+                                        >
                                         <div className={`card ${product.position}`}>
                                             <img
                                                 src={`${productImagePath}${product.imageName}`}
@@ -125,6 +128,7 @@ const Home: React.FC<HomeProps> = ({ style }) => {
                                                 className="card-img-top"
                                             />
                                         </div>
+                                        </a>
                                     </div>
                                 ))}
                             </div>
