@@ -33,6 +33,13 @@ const Checkout: React.FC<Props> = ({ style }) => {
         setIsOtherAddressVisible(select.value === 'other');
     };
 
+    const clearData = async() => {
+        let toupi = JSON.parse(localStorage.getItem('cart') || '[]') as ToupiItem[];
+        toupi = [];
+        localStorage.setItem('cart', JSON.stringify(toupi)); 
+        rendertoupi();
+    }
+
     const saveBillingData = async () => {
         const db = getDatabase(app);
         const orderCode = createOrderCode();
@@ -49,6 +56,7 @@ const Checkout: React.FC<Props> = ({ style }) => {
                 date: new Date().toISOString(),
             });
             showOrderCodeModal(orderCode);
+            clearData();
         } catch (error) {
             console.error('Failed to save data', error);
         }

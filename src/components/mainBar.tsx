@@ -29,11 +29,13 @@ import 'slick-carousel/slick/slick.min.js'
 import App from './../App';
 import ProductsDetails from "./Products/productsDetails";
 import Bead from "./Products/bead";
+import { createRoot } from "react-dom/client";
 
 const MainBar: React.FC = () => {
     const sections = ["home", "bead", "bake", "custom", "checkout"];
     const sectionColors = ["#FFF6E3", "#f7dbf2", "#ded7fb", "#e4f5ff", "#eaf9eb"];
     const location = useLocation();
+    const [cartCount, setCartCount] = useState(0);
 
     const HideDetailsSection = () => {
         document.querySelectorAll('.side-section').forEach((section) => {
@@ -90,15 +92,18 @@ const MainBar: React.FC = () => {
                 <Route path="/home" element={<Home style={{ backgroundColor: sectionColors[sections.indexOf("home")] }} />} />
                 <Route path="/bead/*" element={
                     // <BeadProducts style={{ backgroundColor: sectionColors[sections.indexOf("bead")] }} />
-                    <Bead style={{ backgroundColor: sectionColors[sections.indexOf("bead")] }} />
+                    <Bead CartCount={cartCount} setCartCount={setCartCount}  style={{ backgroundColor: sectionColors[sections.indexOf("bead")] }} />
                 } />
                 <Route path="/bake" element={<BakeProducts style={{ backgroundColor: sectionColors[sections.indexOf("bake")] }} />} />
-                <Route path="/custom" element={<CustomProducts style={{ backgroundColor: sectionColors[sections.indexOf("custom")] }} />} />
+                <Route path="/custom" element={<CustomProducts setCartCount={setCartCount} style={{ backgroundColor: sectionColors[sections.indexOf("custom")] }} />} />
                 <Route path="/checkout" element={<Checkout style={{ backgroundColor: sectionColors[sections.indexOf("checkout")] }} />} />
                 
             </Routes>
         </div>
     );
 };
+
+const root = createRoot(document.getElementById('root')!);
+root.render(<MainBar />);
 
 export default MainBar;

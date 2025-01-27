@@ -3,6 +3,7 @@
   opacity: 0.3;
   transition: transform 0.5s ease, opacity 0.5s ease;
   overflow: hidden;
+  border-radius: 10vh;
 }
 
 .carousel-center-mode .slick-center {
@@ -15,6 +16,8 @@
   margin-top: -5vh;
 }
 
+.carousel-center-mode 
+
 .carousel-center-mode .slick-slide img {
   border-radius: 5vh;
 }
@@ -25,8 +28,16 @@
 
 .slick-dots {
   bottom: 2vh;
-  scale: 1.8;
+  scale: 1.5;
 }
+
+@media (min-width: 1980px) {
+  .slick-dots {
+    scale: 3.5;
+  }
+}
+
+
 .carousel-center-mode button {
   background-color: transparent;
 }
@@ -43,14 +54,15 @@
   color: black;
   font-size: 55px;
   opacity: 1;
+  margin-top: -5vh;
 }
 
 .slick-prev::before {
   color: gray;
   content: "❮";
   font-family: cursive;
-  margin-right: -18vw !important;
-  font-size: 55px;
+  margin-right: -14vw !important;
+  font-size: 10vh;
   color: black;
   opacity: 1;
 }
@@ -60,8 +72,8 @@
   content: "❯";
   font-family: cursive;
   margin-top: -2vh;
-  margin-left: -18vw;
-  font-size: 55px;
+  margin-left: -14vw;
+  font-size: 10vh;
   color: black;
   opacity: 1;
 }

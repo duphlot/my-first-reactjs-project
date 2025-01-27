@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import 'font-awesome/css/font-awesome.min.css';
-import "./css/login.css";
+import "../css/login.css";
 import "font-awesome/css/font-awesome.min.css";
 import { useNavigate  } from "react-router-dom";
 import { get, getDatabase, ref, set } from "firebase/database";

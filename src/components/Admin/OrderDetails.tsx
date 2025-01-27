@@ -1,15 +1,12 @@
 import { getDatabase, ref, get } from 'firebase/database';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import app from '../firebaseConfig';
+import app from '../../firebaseConfig';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 //css
-import './css/Admin.css';
+import '../css/admin.css';
 
-interface Props {
-    style: React.CSSProperties;
-}
 
 interface productsType {
     name: string;
@@ -28,7 +25,7 @@ interface ToupiItem {
     date?: string;
 }
 
-function Admin() {
+function OrderDetail() {
     const navigate = useNavigate();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const auth = getAuth();
@@ -226,4 +223,4 @@ function Admin() {
     );
 }
 
-export default Admin;
+export default OrderDetail;

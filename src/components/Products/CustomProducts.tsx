@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-interface Props {
-    style: React.CSSProperties;
-}
-
 const customPath = "images/custom/";
 async function fetchCustomImages(): Promise<{ imageName: string; caption: string }[] | undefined> {
     try {
@@ -128,9 +124,36 @@ function CustomGallery() {
     updateCarousel();
 }
 
-function CustomProducts({ style }: Props) {
+const CustomProducts: React.FC<{ setCartCount: (value: number) => void, style: React.CSSProperties }> = ({ setCartCount, style }) => {
     const [initialized, setInitialized] = useState(false);
 
+    // handle addToCart for custom products
+    const handleAddToCartCustom = (event: Event) => {
+        const target = event.target as HTMLElement;
+        if (target && target.classList.contains('addToCartBtn')) {
+            let productCard = target.closest('.card');
+            let productName = productCard?.querySelector('.card-title')?.textContent?.trim();
+            const productPrice = (productCard?.querySelector('#product-color') as HTMLSelectElement)?.value;
+            const productImage = productCard?.querySelector('img')?.getAttribute('src');
+            const productColor = (productCard?.querySelector('#product-color') as HTMLSelectElement)?.value;
+            productName = productName+ ' - ' + productColor;
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const existingProduct = cart.find((product: { name: string, color: string }) => product.name === productName && product.color === productColor);
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+            } else {
+                cart.push({ name: productName, price: productPrice, image: productImage, color: productColor, quantity: 1 });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+        }
+    };
+
+    const updateCartCount = () => {
+        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        const count = cart.reduce((acc: number, product: { quantity: number }) => acc + product.quantity, 0);
+        setCartCount(count);
+    };
     useEffect(() => {
         if (!initialized) {
             (async () => {
@@ -140,7 +163,12 @@ function CustomProducts({ style }: Props) {
             })();
         }
     }, [initialized]);
-    
+
+    // useEffect for addToCart
+    useEffect(() => {
+        const customCard = document.getElementById('customCard');
+        customCard?.addEventListener('click', handleAddToCartCustom);
+    }, []);
 
     return (
         <>
@@ -177,7 +205,7 @@ function CustomProducts({ style }: Props) {
                                         <option value="35,000 VND">35,000 VND</option>
                                         <option value="40,000 VND">40,000 VND</option>
                                     </select>
-                                    <a href="#" className="btn btn-primary addToCartBtn">Thêm vào giỏ hàng</a>
+                                    <a href="/my-first-reactjs-project/#/custom" className="btn btn-primary addToCartBtn">Thêm vào giỏ hàng</a>
                                 </div>
                             </div>
                         </div>

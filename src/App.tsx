@@ -3,10 +3,10 @@
 // import Admin from './components/Admin';
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import { lazy } from "react";
-const Login = lazy(() => import("./components/testLogin"));
+const Login = lazy(() => import("./components/Admin/testLogin"));
 const Navbar = lazy(() => import("./components/Navbar"));
 const MainBar = lazy(() => import("./components/mainBar"));
-const Admin = lazy(() => import("./components/Admin"));
+const Admin = lazy(() => import("./components/Admin/Admin"));
 
 
 function App(){

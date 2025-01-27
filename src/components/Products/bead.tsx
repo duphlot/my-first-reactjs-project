@@ -18,8 +18,13 @@ interface Props {
     style: React.CSSProperties;
 }
 
-const Bead: React.FC<Props> = ({ style }) => {
-        const [cartCount, setCartCount] = useState(0);
+interface BeadProps {
+    CartCount: number;
+    setCartCount: (value: number) => void;
+    style: React.CSSProperties;
+}
+
+const Bead: React.FC<BeadProps> = ({CartCount ,setCartCount, style }) => {
     
         const showfilter = (category: string) => {
             // if now link != /bead time = 500 else 0
@@ -54,7 +59,7 @@ const Bead: React.FC<Props> = ({ style }) => {
                     <section id="cart-products" style={{ minWidth: 'fit-content' }}>
                         <div className="cart-btn-container d-flex justify-content-end">
                             <button className="btn btn-outline-primary me-2" id="cartBtn">
-                                🛒 cart (<span id="cartCount">{cartCount}</span> items)
+                                🛒 cart (<span id="cartCount">{CartCount}</span> items)
                             </button>
                         </div>
                         <div className="cart-modal" id="cartModal">
@@ -82,7 +87,5 @@ const Bead: React.FC<Props> = ({ style }) => {
     )
 }
 
-const root = createRoot(document.getElementById('root')!);
-root.render(<Bead style={{}} />);
 
 export default Bead;
