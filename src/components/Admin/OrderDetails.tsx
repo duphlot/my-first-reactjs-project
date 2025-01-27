@@ -26,24 +26,6 @@ interface ToupiItem {
 }
 
 function OrderDetail() {
-    const navigate = useNavigate();
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const auth = getAuth();
-
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setIsAuthenticated(true);
-            } else {
-                setIsAuthenticated(false);
-                navigate("/login"); // Redirect to login page
-            }
-        });
-
-        // Cleanup subscription
-        return () => unsubscribe();
-    }, [auth, navigate]);
-
     let [order, setOrder] = useState<ToupiItem[]>([]);
     let [searchTerm, setSearchTerm] = useState<string>('');
     let [filterTerm, setFilterTerm] = useState<string>('');
@@ -97,9 +79,6 @@ function OrderDetail() {
         fetchData();
     }, []);
 
-    if (!isAuthenticated) {
-        return <p>Redirecting to login...</p>; // Or display a loading state
-    }
 
     return (
         <>

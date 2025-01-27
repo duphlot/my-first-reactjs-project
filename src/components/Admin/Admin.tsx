@@ -1,10 +1,33 @@
 
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import OrderDetail from './OrderDetails'
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 
 const AdminDashboard = () => {
+  
+  const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const auth = getAuth();
+
+  useEffect(() => {
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+          if (user) {
+              setIsAuthenticated(true);
+          } else {
+              setIsAuthenticated(false);
+              navigate("/login"); // Redirect to login page
+          }
+      });
+
+      // Cleanup subscription
+      return () => unsubscribe();
+  }, [auth, navigate]);
+
+  if (!isAuthenticated) {
+    return <p>Redirecting to login...</p>; // Or display a loading state
+  }
   return (
 
     <>
