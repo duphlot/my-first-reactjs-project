@@ -195,7 +195,7 @@ const BeadProducts: React.FC<{ setCartCount: (value: number) => void }> = ({ set
             const productName = productCard?.querySelector('.cart-product-title')?.textContent;
             if (productName) {
                 const confirmText = document.querySelector('.confirm-text') as HTMLElement;
-                confirmText.textContent = `Are you sure you want to remove ${productName} from your cart?`;
+                confirmText.textContent = `Xóa ${productName} khỏi giỏ hàng?`;
                 document.getElementById('cartDeleteConfirm')!.style.display = 'block';
                 document.getElementById('deleteItem')!.addEventListener('click', () => {
                     removeFromCart(productName);

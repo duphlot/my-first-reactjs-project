@@ -5,19 +5,6 @@ import BeadProducts from "./BeadProducts";
 import { update } from "firebase/database";
 import exp from "constants";
 import { createRoot } from 'react-dom/client';
-
-interface Product {
-    folder: string;
-    name: string;
-    filter: string;
-    status: string;
-    price: string;
-}
-
-interface Props {
-    style: React.CSSProperties;
-}
-
 interface BeadProps {
     CartCount: number;
     setCartCount: (value: number) => void;
@@ -64,7 +51,7 @@ const Bead: React.FC<BeadProps> = ({CartCount ,setCartCount, style }) => {
                         </div>
                         <div className="cart-modal" id="cartModal">
                             <div id="cartContainer"></div>
-                            <a href="/my-first-reactjs-project/#/checkout" className="btn btn-primary">Checkout</a>
+                            <a href="/my-first-reactjs-project/#/checkout" className="btn btn-primary" style={{marginRight:'10px'}}>Checkout</a>
                             <button className="btn btn-secondary" id="closeCartBtn">Close</button>
                         </div>
                         <div className="cart-delete-confirm" id="cartDeleteConfirm">

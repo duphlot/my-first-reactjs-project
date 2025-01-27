@@ -17,7 +17,7 @@ const AdminDashboard = () => {
               setIsAuthenticated(true);
           } else {
               setIsAuthenticated(false);
-              navigate("/login"); // Redirect to login page
+              navigate("/login"); 
           }
       });
 
