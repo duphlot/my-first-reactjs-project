@@ -3,7 +3,7 @@
   opacity: 0.3;
   transition: transform 0.5s ease, opacity 0.5s ease;
   overflow: hidden;
-  border-radius: 10vh;
+  border-radius: 5vw;
 }
 
 .carousel-center-mode .slick-center {
