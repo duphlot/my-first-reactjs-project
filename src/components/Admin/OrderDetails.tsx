@@ -1,4 +1,4 @@
-import { getDatabase, ref, get } from 'firebase/database';
+import { getDatabase, ref, get, update } from 'firebase/database';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import app from '../../firebaseConfig';
@@ -7,7 +7,6 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 //css
 import '../css/admin.css';
 
-
 interface productsType {
     name: string;
     price: string;
@@ -15,6 +14,7 @@ interface productsType {
 }
 
 interface ToupiItem {
+    fireBaseID:string;
     igname: string;
     number: string;
     address: string;
@@ -36,7 +36,9 @@ function OrderDetail() {
         const dbRef = ref(db, 'order');
         const snapshot = await get(dbRef);
         if (snapshot.exists()) {
-            setOrder(Object.values(snapshot.val()));
+            const data = snapshot.val();
+            const dataArray = Object.keys(data).map((key) => ({ ...data[key], fireBaseID: key }));
+            setOrder(dataArray);
             console.log(snapshot.val());
         } else {
             alert('No data available');
@@ -56,17 +58,6 @@ function OrderDetail() {
         }
     };
 
-    const handleFilter = () => {
-        const filteredOrders = order.filter((item) =>
-            item.products.some((product) =>
-                Object.values(product).some((value) =>
-                    typeof value === 'string' && value.toLowerCase().includes(filterTerm.toLowerCase())
-                )
-            )
-        );
-        setOrder(filteredOrders);
-    };
-
     const handleSort = (orders: ToupiItem[]) => {
         return orders.sort((a, b) => {
             if ((a[sortOption] ?? '') < (b[sortOption] ?? '')) return -1;
@@ -75,10 +66,15 @@ function OrderDetail() {
         });
     };
 
+    const updateOrderStatus = async (fireBaseID: string, status: string) => {
+        const db = getDatabase(app);
+        const orderRef = ref(db, `order/${fireBaseID}`);
+        await update(orderRef, { status });
+    };
+
     useEffect(() => {
         fetchData();
     }, []);
-
 
     return (
         <>
@@ -179,10 +175,11 @@ function OrderDetail() {
                                 <td className="order-status">
                                     <select
                                         value={item.status}
-                                        onChange={(e) => {
+                                        onChange={async (e) => {
                                             const updatedOrder = [...order];
                                             updatedOrder[index].status = e.target.value;
                                             setOrder(updatedOrder);
+                                            await updateOrderStatus(item.fireBaseID!, e.target.value);
                                         }}
                                     >
                                         <option value="chưa xác nhận">Chưa xác nhận</option>

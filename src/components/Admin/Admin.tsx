@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import OrderDetail from './OrderDetails'
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import DashBoard from './DashBoard';
 
 
 const AdminDashboard = () => {
@@ -20,13 +21,11 @@ const AdminDashboard = () => {
               navigate("/login"); 
           }
       });
-
-      // Cleanup subscription
       return () => unsubscribe();
   }, [auth, navigate]);
 
   if (!isAuthenticated) {
-    return <p>Redirecting to login...</p>; // Or display a loading state
+    return <p>Redirecting to login...</p>;
   }
   return (
 
@@ -44,7 +43,7 @@ const AdminDashboard = () => {
       </div>
       {/* Router */}
       <Routes>
-        <Route path="/dashboard" element={<h1>Admin Dashboard</h1>} />
+        <Route path="/dashboard" element={<DashBoard />} />
         <Route path="/users" element={<h1>Users</h1>} />
         <Route path="/products" element={<h1>Products</h1>} />
         <Route path="/orders" element={<OrderDetail />} />
