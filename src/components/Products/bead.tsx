@@ -51,7 +51,7 @@ const Bead: React.FC<BeadProps> = ({CartCount ,setCartCount, style }) => {
                         </div>
                         <div className="cart-modal" id="cartModal">
                             <div id="cartContainer"></div>
-                            <a href="/my-first-reactjs-project/#/checkout" className="btn btn-primary" style={{marginRight:'10px'}}>Checkout</a>
+                            <a href="/my-first-reactjs-project/#/cart" className="btn btn-primary" style={{marginRight:'10px'}}>Checkout</a>
                             <button className="btn btn-secondary" id="closeCartBtn">Close</button>
                         </div>
                         <div className="cart-delete-confirm" id="cartDeleteConfirm">
