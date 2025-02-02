@@ -201,6 +201,7 @@ img {
 }
 
 .product-category{
+  margin: 0;
   padding: 1.2vh;
   padding-bottom: 0;
 }
@@ -232,6 +233,7 @@ img {
   max-width: clamp(20vw, 40vw, 100vw);
   z-index: 1000;
 }
+
 
 .cart-delete-confirm button {
   width: fit-content;

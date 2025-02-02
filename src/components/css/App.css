@@ -37,6 +37,7 @@ body {
   scrollbar-width: none;
   width: 100vw;
   padding: 2vw;
+  padding-top: 2vh;
   border-left: none;
 }
 
@@ -124,8 +125,9 @@ p {
 }
 
 .navbar-logo {
-  width: calc(100%);
+  width: calc(80%);
   height: auto;
+  margin-left: 10px;
   margin-top: -15px;
   display: block;
 }
@@ -225,7 +227,7 @@ p {
   border-radius: 20svb;
   display: inline-flexbox;
   width: 88svi;
-  height: 5vh;
+  height: 35px;
   align-items: center;
   color: black;
   border: 0.1vh solid black;
@@ -239,7 +241,7 @@ p {
 .marquee-text {
   animation: marquee-scroll 800s linear infinite;
   white-space: nowrap;
-  font-size: clamp(0.8rem, 1.7vh, 1.7rem);
+  font-size: clamp(0.8rem, 1vh, 1.7rem);
 }
 
 .marquee-text span {

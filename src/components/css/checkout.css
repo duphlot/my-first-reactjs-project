@@ -78,8 +78,8 @@
 }
 
 .item-image {
-  width: calc(7vh + 1vw);
-  height: calc(7vh + 1vw);
+  width: calc(6vh + 1vw);
+  height: auto;
   border-radius: 1vh;
   border: 1px solid #ccc;
   margin-right: 2vh;
@@ -93,7 +93,7 @@
 
 .item-price-quantity {
   color: #555;
-  font-size: 0.9em;
+  font-size: clamp(1rem, 1vw, 20rem);
 }
 
 .item-total-price {
@@ -204,13 +204,6 @@
   background-color: #ffc107;
   color: #343a40;
   transform: scale(1.05);
-}
-
-@media (min-width: 1000px) {
-  #checkout {
-    padding: 50px;
-    padding-top: 30px;
-  }
 }
 @media (max-width: 1000px) {
   #checkout .checkout-form {
