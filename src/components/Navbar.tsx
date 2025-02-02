@@ -11,7 +11,7 @@ function Navbar({ text }: NavbarProps) {
     <>
     <nav className="navbar navbar-expand-lg" >
             <div className="navbar-collapse" id="navbarNav" >
-                <ul className="navbar-nav">
+                <ul className="navbar-nav marquee-navbar">
                     <a className="navbar-brand" >
                         <img src="images/logo/logoNavbar.png" alt="Logo" className="navbar-logo" />
                     </a>

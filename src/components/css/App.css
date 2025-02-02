@@ -5,235 +5,219 @@
     padding: 0;
     font-family: 'Montserrat', sans-serif;
 }
-
 body {
-    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
-    color: #333;
-    font-family: "Itim", serif;
-    font-size: 16px;
-    line-height: 1.5;
-    padding: 1vw;
-    padding-top: 0;
-    width: 100vw;
-    height: 100svh;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    scrollbar-width: none;
-  }
-
-.main-container {
-    display: flex;
-    flex-direction: row;
-    height: 88svh;
-    overflow: hidden;
+  background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+  color: #333;
+  font-family: "Itim", serif;
+  font-size: clamp(12px, 1.6vw, 16px);
+  line-height: 1.5;
+  padding: 2vw;
+  padding-left: 1vw;
+  padding-right: 1.5vw;
+  padding-top: 0;
+  width: 100vw;
+  height: 100svh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: none;
 }
 
- .section {
-    border-radius: 0 5vh 5vh 0;
-    overflow: auto;
-    overflow-x: hidden;
-    scrollbar-width: none;
-    width: 100vw;
-    padding: 20px;
-    border-left: none;
+.main-container {
+  display: flex;
+  flex-direction: row;
+  height: 88svh;
+  overflow: hidden;
+}
+
+.section {
+  border-radius: 0 5vh 5vh 0;
+  overflow: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  width: 100vw;
+  padding: 2vw;
+  border-left: none;
 }
 
 .slide-in {
-    animation-name: slideInFromLeft;
-    animation-duration: 0.7s;
-    animation-fill-mode: both;
-    animation-timing-function: ease-out; 
+  animation-name: slideInFromLeft;
+  animation-duration: 0.7s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out; 
 }
 
-.overside{
-    background-color: transparent;
-    border-radius: 20px;
-    font-size: 16px;
-    width:100vw;
-    overflow: auto;
-    scrollbar-width: none;
-    overflow-x: hidden;
+.overside {
+  background-color: transparent;
+  border-radius: 20px;
+  font-size: clamp(12px, 1.6vw, 16px);
+  width: 100vw;
+  overflow: auto;
+  scrollbar-width: none;
+  overflow-x: hidden;
 }
 
 .click-highlight {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-    animation: click-highlight-animation 1s ease-out;
-    pointer-events: none;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  animation: click-highlight-animation 1s ease-out;
+  pointer-events: none;
 }
 
-.navbar-expand-lg .navigate{
-    flex-direction: column;
+.navbar-expand-lg .navigate {
+  flex-direction: column;
 }
 
-.container-nav{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
+.container-nav {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
 .navbar-nav .nav-item {
-    border-radius: 5vh 0 0 5vh;
-    margin: 0px;
-    font-size: 1.4rem;
-    margin-right: 0;
-    width: 8vw;
-    height: 25%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0.5;
+  border-radius: 5vh 0 0 5vh;
+  margin: 0px;
+  font-size: clamp(1rem, 1.7vw, 20rem);
+  margin-right: 0;
+  width: 8vw;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.5;
 }
 
 .custom-nav-item.active {
-    font-size: 1.6rem;
-    text-decoration: underline;
-    color: black;
-    padding-left: 10px;
-    opacity: 1;
-    border-right: none;
+  text-decoration: underline;
+  color: black;
+  padding-left: 10px;
+  opacity: 1;
+  border-right: none;
 }
 
 h1, h2, a, p, code, pre, .navbar-nav .nav-item .nav-link, #team-introduction h2, #products h2, #team-introduction .section-title h3, #products .section-title h3, #team-introduction .section-title p, #products .section-title p {
-    font-family: "Itim", serif;
+  font-family: "Itim", serif;
 }
 
 h1, h2 {
-    font-weight: bold;
-    margin-bottom: 15px;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 
 a {
-    color: #007bff;
-    text-decoration: none;
+  color: #007bff;
+  text-decoration: none;
 }
 
 a:hover {
-    color: #0056b3;
-    text-decoration: underline;
+  color: #0056b3;
+  text-decoration: underline;
 }
 
-
 p {
-    font-size: 1em;
-    line-height: 1.6;
+  font-size: clamp(0.8rem, 1em, 1em);
+  line-height: 1.6;
 }
 
 .navbar-logo {
-    width: 6.7vw;
-    height: auto;
-    margin-top: -15px;
-    display: block;
+  width: calc(100%);
+  height: auto;
+  margin-top: -15px;
+  display: block;
 }
 
-.nav-item.custom-nav-item:nth-child(1) { background-color: #FFF6E3;}
-.nav-item.custom-nav-item:nth-child(2) { background-color: #f7dbf2;}
-.nav-item.custom-nav-item:nth-child(3) { background-color: #ded7fb;}
-.nav-item.custom-nav-item:nth-child(4) { background-color: #e4f5ff;}
-.nav-item.custom-nav-item:nth-child(5) { background-color: #eaf9eb;}
+.nav-item.custom-nav-item:nth-child(1) { background-color: #FFF6E3; }
+.nav-item.custom-nav-item:nth-child(2) { background-color: #f7dbf2; }
+.nav-item.custom-nav-item:nth-child(3) { background-color: #ded7fb; }
+.nav-item.custom-nav-item:nth-child(4) { background-color: #e4f5ff; }
+.nav-item.custom-nav-item:nth-child(5) { background-color: #eaf9eb; }
 
- .text-container h2{
-    font-size: 2.5vw;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #333;
+.text-container h2 {
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
 }
 
 .text-container {
-    font-size: 1.8vw;
-    text-align: left;
-    font-family: "Itim", serif;
-    line-height: 1.8;
-    color: #333;
-    padding: 20px;
-    border-radius: 12px;
+  font-size: clamp(1rem, 1.8vw, 1.8rem);
+  text-align: left;
+  font-family: "Itim", serif;
+  line-height: 1.8;
+  color: #333;
+  padding: 20px;
+  border-radius: 12px;
 }
 
 .text-container ol {
-    padding-left: 20px;
-    margin: 20px 0;
-    list-style-type: none;
+  padding-left: 20px;
+  margin: 20px 0;
+  list-style-type: none;
 }
 
 .text-container ol > li {
-    margin-bottom: 15px;
-    position: relative;
-    padding-left: 2vh;
+  margin-bottom: 15px;
+  position: relative;
+  padding-left: 2vh;
 }
 
 .text-container ol > li:before {
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: #ff69b4;
-    font-size: 1.2rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #ff69b4;
+  font-size: 1.2rem;
 }
 
 .text-container ul {
-    padding-left: 40px;
-    list-style-type: "🌟";
+  padding-left: 40px;
+  list-style-type: "🌟";
 }
 
 .text-container ul li {
-    margin-bottom: 10px;
-    line-height: 1.6;
+  margin-bottom: 10px;
+  line-height: 1.6;
 }
 
 .text-container span {
-    display: inline-block;
-    font-weight: bold;
-    font-size: 2vw;
-    color: #ff69b4;
-    font-family: 'Comic Sans MS', cursive;
-    animation: bounce 2s infinite alternate;
+  display: inline-block;
+  font-weight: bold;
+  font-size: clamp(1rem, 2vw, 2rem);
+  color: #ff69b4;
+  font-family: 'Comic Sans MS', cursive;
+  animation: bounce 2s infinite alternate;
 }
 
 .text-container hr {
-    border: 0;
-    border-top: 2px dashed #ff69b4;
-    margin: 20px 0;
+  border: 0;
+  border-top: 2px dashed #ff69b4;
+  margin: 20px 0;
 }
 
 .logo {
-    text-align: center;
-}
-
-.logo .toupi {
-    font-size: 10vw;
-    font-family: "Itim", serif;
-    color: #f295da;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.logo .bead-bake {
-    font-size: 6vw;
-    font-family: "Itim", serif;
-    color: #6981f3;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    animation: shake 2s infinite alternate;
+  text-align: center;
 }
 
 .card-text {
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .card.bg-light .card-text {
-    color: #333;
-    text-shadow: none;
+  color: #333;
+  text-shadow: none;
 }
 
 .img-fluid {
-    margin-bottom: auto;
+  margin-bottom: auto;
 }
 
 .carousel-inner {
-    border-radius: 5vh;
+  border-radius: 5vh;
 }
 
 .marquee-container {
@@ -253,81 +237,85 @@ p {
 }
 
 .marquee-text {
-    animation: marquee-scroll 800s linear infinite;
-    white-space: nowrap;
-    font-size: 1.7vh;
+  animation: marquee-scroll 800s linear infinite;
+  white-space: nowrap;
+  font-size: clamp(0.8rem, 1.7vh, 1.7rem);
 }
 
 .marquee-text span {
-    padding-right: 20px;
+  padding-right: 20px;
 }
 
-.marquee-text span:hover{
-    text-decoration: underline;
+.marquee-text span:hover {
+  text-decoration: underline;
 }
 
 @keyframes marquee-scroll {
-    from {
-        transform: translateX(0%);
-    }
-    to {
-        transform: translateX(-100%);
-    }
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 .navbar {
-    color: #fff;
-    margin: 10px 0 0;
-    padding: 0;
-    display: flex;
+  color: #fff;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
 }
 
-.navbar-nav {
-    display: flex;
-    list-style: none;
-    padding-left: 0;
-    margin-bottom: 0;
+.marquee-navbar {
+  flex-direction: unset;
+  align-items: center;
 }
 
-.second-container{
-    display: flex; 
-    flex-direction: row;
-    overflow: hidden;
+.second-container {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
 }
 
-.chat-box-comment{
-    background-color: #fcedf8;
-    border-radius: 20px;
-    padding: 20px;
+.chat-box-comment {
+  background-color: #fcedf8;
+  border-radius: 3vh;
+  padding: 3vh;
 }
 
-.chat-box-comment h2{
-    font-size: 28px;
-    font-weight: bolder;
-    margin-bottom: 20px;
-    color: #333;
-}
-.chat-box-comment p{
-    text-align: center;
-    font-size: 3vh;
+.chat-box-comment h2 {
+  font-size: clamp(1.5rem, 2vw, 20rem);
+  font-weight: bolder;
+  margin-bottom: 2vw;
+  color: #333;
 }
 
-.chat-box-input input{
-    width: 80%;
-    height: 5vh;
-    border-radius: 20px;
-    padding: 10px;
-    margin-right: 10px;
-    border: none;
+.chat-box-comment p {
+  text-align: center;
+  font-size: clamp(1rem, 1.5vw, 20rem);
 }
 
-.chat-box-input button{
-    width: 15%;
-    height: 5vh;
-    border-radius: 20px;
-    background-color: #f295da;
-    color: white;
-    border: none;
+.chat-box-input input {
+  width: 80%;
+  height: 5vh;
+  border-radius: 3vh;
+  padding: 1vw;
+  margin-right: 10px;
+  border: none;
+  font-size: clamp(0.7rem, 1.3vw, 20rem);
+}
+
+.chat-box-input button {
+  width: 15%;
+  height: 5vh;
+  border-radius: 3vh;
+  background-color: #f295da;
+  color: white;
+  border: none;
+  font-size: clamp(0.7rem, 1.3vw, 20rem);
+}
+.text-container p{
+  font-size: clamp(1rem, 1.3vw, 20rem);
 }
 
 
@@ -364,76 +352,20 @@ p {
       padding-top: 0;
     }
   
-    .logo .toupi {
+    /* .logo .toupi {
       font-size: 8rem;
-    }
+    } */
   
-    .logo .bead-bake {
+    /* .logo .bead-bake {
       font-size: 4rem;
       margin-bottom: 50px;
-    }
-  
-    .text-container {
-      font-size: 1.2rem;
-      padding: 15px;
-      margin: 20px auto;
-      line-height: 1.6;
-    }
-  
-    .text-container h2 {
-      font-size: 1.2rem;
-    }
-  
-    .text-container ol {
-      padding-left: 15px;
-    }
-  
-    .text-container ul {
-      padding-left: 25px;
-    }
-  
-    .text-container ol > li {
-      padding-left: 0;
-    }
-  
-    .text-container ol > li:before {
-      font-size: 0.5rem;
-    }
-  
-    .text-container ul li {
-      margin-bottom: 8px;
-    }
-  
-    .text-container span {
-      animation: none;
-    }
-  
-    .text-container hr {
-      margin: 15px 0;
-    }
+    } */
   
     .section {
       border-radius: 0 0 20px 20px;
     }
     .main-container {
       border-radius: 0 0 20px 20px;
-    }
-  
-    body,
-    .hero h1,
-    .hero .btn,
-    footer,
-    #team-introduction h2,
-    #products h2,
-    #team-introduction ul li,
-    #products ul li,
-    #team-introduction .section-title h3,
-    #products .section-title h3,
-    #team-introduction .section-title p,
-    #team-introduction .section-title ul,
-    #products .section-title p,
-    #products .section-title ul {
-      font-family: "Itim", serif;
     }
   
     body {
@@ -473,11 +405,10 @@ p {
   
     .navbar-logo {
       padding-bottom: 10px;
-      width: 18vw;
     }
   
     .marquee-container {
-      width: 70vw;
+      width: 80vw;
       margin-top: -30px;
     }
   

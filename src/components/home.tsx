@@ -75,7 +75,7 @@ const Home: React.FC<HomeProps> = ({ style }) => {
             </div>
 
             {/* Home Content */}
-            <div className="row head-tag" style={{ marginTop: "100px" }}>
+            <div className="row head-tag" style={{ marginTop: "50px" }}>
                 <div className="col-lg-6 col-md-12 section1 order-lg-1 order-2">
                     <div className="chat-box-comment">
                         <h2>Góc tâm sự</h2>
@@ -121,7 +121,7 @@ const Home: React.FC<HomeProps> = ({ style }) => {
                                         <a
                                         href = {`/my-first-reactjs-project/#/bead/productDetails?sectionId=product-details&productId=${product.folder}&productPrice=${product.price}&productName=${product.name}&productStatus=${product.status}`}
                                         >
-                                        <div className={`card ${product.position}`}>
+                                        <div className={`card`}>
                                             <img
                                                 src={`${productImagePath}${product.imageName}`}
                                                 alt={product.name}

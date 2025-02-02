@@ -175,15 +175,15 @@ const Checkout: React.FC<Props> = ({ style }) => {
                 </div>
                 <div className="gift-price-tag">
                     <p className="item-total-price" style={{ marginBottom: 0 }}><a style={{ textDecoration: 'line-through' }}>10,000</a> VND</p>
-                    <p style={{ marginBottom: 'none' }}><a>0</a> VND</p>
+                    <p style={{ marginBottom: 'none', fontSize: 'clamp(1rem, 1.2vw, 20rem)' }}><a>0</a> VND</p>
                 </div>
             </div>
         );
 
         const GiftText = braceletsTotalPrice >= 50000 ? (
-            <h2 style={{ fontSize: '20px' }}>sốp tặng bạng nèe</h2>
+            <h2 style={{ fontSize: 'clamp(1rem, 1.5vw, 20rem)' }}>sốp tặng bạng nèe</h2>
         ) : (
-            <p>chỉ cần thêm ${(50000 - braceletsTotalPrice)/1000}k nữa là bạn sẽ được nhận 1 dango keyring từ sốp</p>
+            <p style={{ fontSize: 'clamp(1rem, 1.5vw, 20rem)' }}>chỉ cần thêm ${(50000 - braceletsTotalPrice)/1000}k nữa là bạn sẽ được nhận 1 dango keyring từ sốp</p>
         );
 
         const newCartGifts = braceletsTotalPrice >= 50000 ? (
@@ -260,16 +260,16 @@ const Checkout: React.FC<Props> = ({ style }) => {
             <form id="checkout-form" className="checkout-form">
                 <div className="row">
                     <div className="col-md-6 billing-details">
-                        <h4 className="mb-4" style={{ fontSize: '25px', fontWeight: '800' }}>Thông tin mua hàng</h4>
-                        <div className="mb-3">
-                            <label htmlFor="billing-name" className="form-label">Cho xin tên instagram nhoaa</label>
+                        <h4 className="title mb-4" style={{fontWeight: '800' }}>Thông tin mua hàng</h4>
+                        <div className="mb-3 question">
+                            <label htmlFor="billing-name" className="form-label underline">Cho xin tên instagram nhoaa</label>
                             <input type="text" className="form-control" id="billing-name" value={igname} onChange={(e) => setIgname(e.target.value)} required />
                         </div>
-                        <div className="mb-3">
+                        <div className="mb-3 question">
                             <label htmlFor="billing-number" className="form-label">Xin số điện thoại nữaa</label>
                             <input type="text" className="form-control" id="billing-number" value={number} onChange={(e) => setNumber(e.target.value)} required />
                         </div>
-                        <div className="mb-3">
+                        <div className="mb-3 question">
                             <label htmlFor="billing-address" className="form-label">Mún nhận hàng sao nè</label>
                             <select value={address} onChange={(e) => { setAddress(e.target.value); toggleOtherAddress(e.target); }} id="billing-address" className="form-control" required>
                                 <option value="pick up">để tui qua lấy</option>
@@ -289,7 +289,7 @@ const Checkout: React.FC<Props> = ({ style }) => {
                         </div>
                     </div>
                     <div className="col-md-6 order-summary">
-                        <h4 className="mb-4" style={{ fontSize: '25px', fontWeight: 800 }}>Order Summary</h4>
+                        <h4 className="title mb-4" style={{ fontWeight: 800 }}>Order Summary</h4>
                         <div id="cartItems" className="mb-3">
                             {renderCartItems()}
                         </div>
@@ -297,7 +297,7 @@ const Checkout: React.FC<Props> = ({ style }) => {
                             {cartGifts}
                         </div>
                         <div id="discountCombos" style={{ marginTop: '20px', borderBottom: '1px solid #ccc', paddingBottom: '10px' }}></div>
-                        <p><strong>Tổng tiền là :</strong> <span id="subtotal">{totalPrice.toLocaleString()}</span> VND</p>
+                        <p style={{ fontSize: 'clamp(1rem, 1.5vw, 20rem)' }}><strong>Tổng tiền là :</strong> <span id="subtotal">{totalPrice.toLocaleString()}</span> VND</p>
                     </div>
                 </div>
                 <div className="text-center mt-4">

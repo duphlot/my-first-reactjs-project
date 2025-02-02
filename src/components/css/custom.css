@@ -1,10 +1,18 @@
 .custom-gallery-layout {
-  border-radius: 30px;
-  padding-top: 30px;
-  padding-bottom: 15px;
+  border-radius: 3vh;
+  padding-top: 3vh;
+  padding-bottom: 1.5vh;
   height: auto;
   width: auto;
   background-color: #d2eefd;
+}
+
+.text-center{
+  font-size: clamp(1rem, 6vh, 10rem);
+}
+
+.text-content{
+  font-size: clamp(1rem, 3vh, 5rem);
 }
 
 .custom-gallery-layout .carousel-container {
@@ -28,7 +36,7 @@
 }
 
 .custom-gallery-layout img {
-  border-radius: 30px;
+  border-radius: 3vh;
 }
 
 .custom-gallery-layout .carousel-arrow {
@@ -37,7 +45,7 @@
   transform: translateY(-50%);
   background-color: transparent;
   border: none;
-  padding: 10px;
+  padding: 1vh;
   cursor: pointer;
   z-index: 10;
 }
@@ -59,9 +67,9 @@
 
 .custom-gallery-layout .carousel-dots .dot {
   display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin: 5px;
+  width: 1vh;
+  height: 1vh;
+  margin: 0.5vh;
   background-color: #ccc;
   border-radius: 50%;
   cursor: pointer;
@@ -81,18 +89,18 @@
 }
 
 .custom-gallery-layout .item {
-  border-radius: 30px;
+  border-radius: 3vh;
   display: none;
   align-items: center;
   justify-content: center;
   height: auto;
   width: auto;
-  font-size: 20px;
+  font-size: clamp(1rem, 3vh, 5rem);
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .custom-gallery-layout .item.active {
-  border-radius: 30px;
+  border-radius: 3vh;
   display: flex;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -112,13 +120,13 @@
 .item.next-exit {
   position: relative;
   animation: slideOutNext 0.8s ease forwards;
-  z-index: 50; /* Hạ z-index để nằm dưới */
+  z-index: 50; 
 }
 
 .item.prev-exit {
   position: relative;
   animation: slideOutPrev 0.8s ease forwards;
-  z-index: 50; /* Hạ z-index để nằm dưới */
+  z-index: 50; 
 }
 
 @media (max-width: 1000px) {

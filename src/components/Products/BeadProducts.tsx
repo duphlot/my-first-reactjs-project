@@ -140,11 +140,11 @@ const BeadProducts: React.FC<{ setCartCount: (value: number) => void }> = ({ set
                 </div>
                 <div class="d-flex align-items-center justify-content-center flex-grow-1">
                     <div class="item-price-quantity d-flex flex-column align-items-center">
-                        <p class="cart-product-price mb-1" style="font-size: 1rem;">${item.price}</p>
+                        <p class="cart-product-price mb-1">${item.price}</p>
                         <div class="d-flex align-items-center">
-                            <button class="btn btn-secondary btn-sm adjust-quantity decreaseQuantityBtn me-2 d-flex align-items-center justify-content-center" style="font-size:1.2rem; width: 30px; height: 30px;">-</button>
-                            <span class="quantity me-2" style="font-size: 1.2rem;">${item.quantity}</span>
-                            <button class="btn btn-secondary btn-sm adjust-quantity increaseQuantityBtn d-flex align-items-center justify-content-center" style="font-size:1.2rem; width: 30px; height: 30px;">+</button>
+                            <button class="btn btn-secondary btn-sm adjust-quantity decreaseQuantityBtn me-2 d-flex align-items-center justify-content-center" >-</button>
+                            <span class="quantity me-2">${item.quantity}</span>
+                            <button class="btn btn-secondary btn-sm adjust-quantity increaseQuantityBtn d-flex align-items-center justify-content-center" >+</button>
                         </div>
                     </div>
                 </div>

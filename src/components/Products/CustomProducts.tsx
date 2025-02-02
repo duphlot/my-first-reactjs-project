@@ -176,8 +176,8 @@ const CustomProducts: React.FC<{ setCartCount: (value: number) => void, style: R
             <div id="custom" className="section" style={style}>
                 <div className="row" style={{ alignItems: 'end' }}>
                     <div className="col-lg-7 col-md-12">
-                        <h1 className="text-center mb-4" style={{ fontSize: '40px' }}>Chỉ có 1 trên đời</h1>
-                        <p className="mb-4" style={{ fontSize: '27px', paddingLeft: '10px' }}>Tự custom một chiếc vòng tay, móc khóa, dây chuyền hay phone strap mà khỏi lo đụng hàng với đứa mình ghét hay bất cứ ai </p>
+                        <h1 className="text-center mb-4">Chỉ có 1 trên đời</h1>
+                        <p className="text-content mb-4">Tự custom một chiếc vòng tay, móc khóa, dây chuyền hay phone strap mà khỏi lo đụng hàng với đứa mình ghét hay bất cứ ai </p>
                         <div className="custom-gallery-layout">
                             <div className="carousel-container">
                                 <button className="carousel-arrow left-arrow">❮</button>

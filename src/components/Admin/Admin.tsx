@@ -4,6 +4,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 import OrderDetail from './OrderDetails'
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import DashBoard from './DashBoard';
+import AddProducts from './AddProducts';
 
 
 const AdminDashboard = () => {
@@ -45,7 +46,7 @@ const AdminDashboard = () => {
       <Routes>
         <Route path="/dashboard" element={<DashBoard />} />
         <Route path="/users" element={<h1>Users</h1>} />
-        <Route path="/products" element={<h1>Products</h1>} />
+        <Route path="/products" element={<AddProducts />} />
         <Route path="/orders" element={<OrderDetail />} />
       </Routes>
     </>
