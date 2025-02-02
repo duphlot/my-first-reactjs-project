@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes, Link, useLocation } from "react
 import BeadProducts from "./Products/BeadProducts";
 import BakeProducts from "./Products/BakeProducts";
 import CustomProducts from "./Products/CustomProducts";
-import Checkout from "./Products/Checkout";
 import Home from './home';
 
 // css
@@ -30,9 +29,10 @@ import App from './../App';
 import ProductsDetails from "./Products/productsDetails";
 import Bead from "./Products/bead";
 import { createRoot } from "react-dom/client";
+import Checkout from "./Products/Checkout";
 
 const MainBar: React.FC = () => {
-    const sections = ["home", "bead", "bake", "custom", "checkout"];
+    const sections = ["home", "bead", "bake", "custom", "cart"];
     const sectionColors = ["#FFF6E3", "#f7dbf2", "#ded7fb", "#e4f5ff", "#eaf9eb"];
     const location = useLocation();
     const [cartCount, setCartCount] = useState(0);
@@ -96,7 +96,7 @@ const MainBar: React.FC = () => {
                 } />
                 <Route path="/bake" element={<BakeProducts style={{ backgroundColor: sectionColors[sections.indexOf("bake")] }} />} />
                 <Route path="/custom" element={<CustomProducts setCartCount={setCartCount} style={{ backgroundColor: sectionColors[sections.indexOf("custom")] }} />} />
-                <Route path="/checkout" element={<Checkout style={{ backgroundColor: sectionColors[sections.indexOf("checkout")] }} />} />
+                <Route path="/cart" element={<Checkout style={{ backgroundColor: sectionColors[sections.indexOf("cart")] }} />} />
                 
             </Routes>
         </div>
